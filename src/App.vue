@@ -1,7 +1,7 @@
 <script setup>
-import PartOutro from './parts/PartOutro.vue'
-import PartIntro from './parts/PartIntro.vue'
-import PartStats from './parts/PartStats.vue'
+import PartOutro from './sections/SectionOutro.vue'
+import PartIntro from './sections/SectionIntro.vue'
+import PartStats from './sections/SectionStats.vue'
 </script>
 
 <template>

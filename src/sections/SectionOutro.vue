@@ -1,7 +1,5 @@
 <script setup></script>
 
-<template>
-  <p>Statistiques</p>
-</template>
+<template></template>
 
 <style scoped></style>

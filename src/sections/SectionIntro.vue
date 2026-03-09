@@ -1,7 +1,5 @@
 <script setup></script>
 
-<template>
-  <p>Fin</p>
-</template>
+<template></template>
 
 <style scoped></style>
