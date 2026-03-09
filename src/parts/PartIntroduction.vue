@@ -10,7 +10,7 @@ img {
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  height: 55vw;
+  height: 100%;
   position: fixed;
 }
 </style>
