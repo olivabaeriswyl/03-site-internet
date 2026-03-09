@@ -5,9 +5,15 @@ import PartStats from './parts/PartStats.vue'
 </script>
 
 <template>
-  <PartIntro></PartIntro>
-  <PartStats></PartStats>
-  <PartOutro></PartOutro>
+  <header>
+    <PartIntro></PartIntro>
+  </header>
+  <main>
+    <PartStats></PartStats>
+  </main>
+  <footer>
+    <PartOutro></PartOutro>
+  </footer>
 </template>
 
 <style scoped></style>
