@@ -1,0 +1,58 @@
+@import './base.css';
+
+body {
+  color: var(--color-blue);
+  font-family: epilogue, sans-serif;
+  background-color: var(--color-light-blue);
+}
+
+/* Fonts */
+
+h1 {
+  font-family: arima, sans-serif;
+  font-size: 120px;
+  font-weight: 600;
+  color: var(--color-blue);
+}
+
+h2 {
+  font-family: arima, sans-serif;
+  font-size: 51px;
+  font-weight: 400;
+  line-height: 54px;
+}
+
+h3 {
+  font-family: epilogue, sans-serif;
+  font-size: 25px;
+  font-weight: 300;
+  color: var(--color-orange);
+}
+
+p {
+  font-family: epilogue, sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 27px;
+}
+
+strong {
+  font-family: epilogue, sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 27px;
+}
+
+em {
+  font-family: arima, sans-serif;
+  font-size: 23px;
+  font-weight: 300;
+  line-height: 30px;
+}
+
+.quote {
+  font-family: arima, sans-serif;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 600;
+}
