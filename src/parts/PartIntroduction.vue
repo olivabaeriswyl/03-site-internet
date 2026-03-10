@@ -42,10 +42,10 @@ onMounted(() => {
 
 @keyframes slide {
   0% {
-    transform: translateX(0);
+    transform: translate(0, 0);
   }
   100% {
-    transform: translateX(-200vw);
+    transform: translate(-200vw, -100vw);
   }
 }
 
@@ -55,7 +55,7 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  animation: slide 6s linear infinite;
+  animation: slide 6s 2s linear infinite;
 }
 
 .t1 {
@@ -112,9 +112,9 @@ onMounted(() => {
   }
 }
 .t4 {
-  transform: translate(0, -100%);
+  transform: translate(0, 100%);
   object-fit: cover;
-  object-position: center;
+  object-position: right;
   position: absolute;
   inset: 0;
   width: 100%;
