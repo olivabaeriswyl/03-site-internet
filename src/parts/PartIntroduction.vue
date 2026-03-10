@@ -2,7 +2,7 @@
 
 <template>
   <h1>Sapin porte-paroles</h1>
-  <button>Débuter l’expérience</button>
+  <a href="#">Débuter l’expérience</a>
   <img src="/background-test-nocrop.svg" alt="" />
 </template>
 
@@ -13,12 +13,22 @@ img {
   transform: translate(-0.5%, -50%);
   height: 95vw;
   position: fixed;
+  pointer-events: none;
 }
 
-button {
+a {
   position: absolute;
   left: 50%;
-  bottom: 30%;
+  bottom: 20%;
   transform: translate(-50%, 0);
+  width: 170px;
+  height: 170px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid orange;
+  border-radius: 50%;
+  color: orange;
 }
 </style>
