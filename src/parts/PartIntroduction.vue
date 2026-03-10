@@ -2,7 +2,7 @@
 import { ref, watch, onMounted } from 'vue'
 // import gsap from 'gsap'
 const heroImg = ref(null)
-const view = ref(3)
+const view = ref(1)
 onMounted(() => {
   watch(
     view,
@@ -14,6 +14,9 @@ onMounted(() => {
         heroImg.value.style.transformOrigin = '72% 58%'
       } else if (view.value === 3) {
         heroImg.value.style.transformOrigin = '54% 88%'
+      } else if (view.value === 0) {
+        heroImg.value.style.transformOrigin = 'center center'
+        heroImg.value.style.scale = '50%'
       }
     },
     { immediate: true },
@@ -72,9 +75,9 @@ onMounted(() => {
 
 img {
   width: 1000px;
-  transform-origin: 10% 45%;
   scale: 500%;
   height: auto;
+  transition: all 3s ease;
 }
 
 @media (min-width: 1400px) {
