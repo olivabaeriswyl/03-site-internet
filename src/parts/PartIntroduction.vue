@@ -4,28 +4,44 @@ import gsap from 'gsap'
 import { CustomEase } from 'gsap/CustomEase'
 
 const heroImg = ref(null)
+const h1 = ref(null)
+const a = ref(null)
 let moved = false
+const tl = gsap.timeline()
 
 const onCtaClick = () => {
-  moved = !moved
-  gsap.to(heroImg.value, {
-    xPercent: moved ? -31 : 0,
-    duration: 2,
-    ease: CustomEase.create(
-      'custom',
-      'M0,0 C0.307,0.062 0.484,0.106 0.568,0.36 0.688,0.726 0.818,1.001 1,1 ',
-    ),
-  })
+  if (moved === false) {
+    moved = !moved
+    gsap.to(heroImg.value, {
+      xPercent: -31,
+      duration: 2,
+      ease: CustomEase.create(
+        'custom',
+        'M0,0 C0.307,0.062 0.484,0.106 0.568,0.36 0.688,0.726 0.818,1.001 1,1 ',
+      ),
+    })
+    tl.to(h1.value, { opacity: 0, duration: 1 }).to(a.value, { opacity: 0, duration: 1 })
+    setTimeout(() => {
+      // tl.clear()
+      a.value.style.pointerEvents = 'none'
+    }, 100)
+  }
 }
 </script>
 
 <template>
-  <h1>Sapin porte-paroles</h1>
-  <a href="#" @click="onCtaClick">Débuter l’expérience</a>
+  <h1 ref="h1">Sapin porte-paroles</h1>
+  <a ref="a" href="#" @click="onCtaClick">Débuter l’expérience</a>
   <img ref="heroImg" src="/background-test-nocrop.svg" alt="" />
+  <div class="scroll"></div>
 </template>
 
 <style scoped>
+:global(html),
+:global(body) {
+  overflow: hidden;
+}
+
 img {
   left: 0;
   top: 50%;
@@ -33,6 +49,10 @@ img {
   height: 95vw;
   position: fixed;
   pointer-events: none;
+}
+
+.scroll {
+  height: 300vh;
 }
 
 a {
