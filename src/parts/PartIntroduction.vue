@@ -77,6 +77,12 @@ img {
   height: auto;
 }
 
+@media (min-width: 1400px) {
+  img {
+    width: 80vw;
+  }
+}
+
 /* @media (max-aspect-ratio: 16/10) {
   img {
     width: auto;
