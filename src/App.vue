@@ -2,6 +2,7 @@
 import PartOutro from './sections/SectionOutro.vue'
 import PartIntro from './sections/SectionIntro.vue'
 import PartStats from './sections/SectionStats.vue'
+import BurgerMenu from './components/BurgerMenu.vue'
 </script>
 
 <template>

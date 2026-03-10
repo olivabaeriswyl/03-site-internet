@@ -1,5 +1,22 @@
-<script setup></script>
+<script setup>
+import IntroStart from './../parts/IntroStart.vue'
+import IntroWords from './../parts/IntroWords.vue'
+import IntroText from './../parts/IntroText.vue'
+</script>
 
-<template></template>
+<template>
+  <div>
+    <IntroStart></IntroStart>
 
-<style scoped></style>
+    <IntroWords></IntroWords>
+
+    <IntroText></IntroText>
+  </div>
+</template>
+
+<style scoped>
+div {
+  background-color: var(--color-light-orange);
+  color: var(--color-white);
+}
+</style>
