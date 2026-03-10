@@ -9,11 +9,11 @@ onMounted(() => {
     (newVal) => {
       console.log('view changed:', newVal)
       if (view.value === 1) {
-        heroImg.value.style.transform = 'translate(0, 0)'
+        heroImg.value.style.transformOrigin = '10% 45%'
       } else if (view.value === 2) {
-        heroImg.value.style.transform = 'translate(-62%, -20%)'
+        heroImg.value.style.transformOrigin = '72% 58%'
       } else if (view.value === 3) {
-        heroImg.value.style.transform = 'translate(-40%, -70%)'
+        heroImg.value.style.transformOrigin = '54% 88%'
       }
     },
     { immediate: true },
@@ -22,7 +22,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <img ref="heroImg" src="/sapin-carre.svg" alt="" />
+  <div class="heroContainer">
+    <img ref="heroImg" src="/sapin.svg" alt="" />
+  </div>
   <div class="scroll"></div>
   <div class="dev-nav">
     <div :class="{ active: view === 1 }" @click="view = 1"></div>
@@ -59,12 +61,20 @@ onMounted(() => {
   background: rgb(180, 100, 100);
 }
 
-img {
+.heroContainer {
   position: fixed;
-  left: 0;
-  top: 0;
-  width: 300vw;
-  transition: transform 1s ease;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+img {
+  width: 1000px;
+  transform-origin: 10% 45%;
+  scale: 500%;
+  height: auto;
 }
 
 /* @media (max-aspect-ratio: 16/10) {
