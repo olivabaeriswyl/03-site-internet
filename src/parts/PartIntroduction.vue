@@ -1,22 +1,51 @@
 <script setup>
-import { ref } from 'vue'
-import gsap from 'gsap'
-import { CustomEase } from 'gsap/CustomEase'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const heroImg = ref(null)
-let moved = false
 
-const onCtaClick = () => {
-  // moved = !moved
-  gsap.to(heroImg.value, {
-    xPercent: moved ? -31 : 0,
-    duration: 2,
-    ease: CustomEase.create(
-      'custom',
-      'M0,0 C0.307,0.062 0.484,0.106 0.568,0.36 0.688,0.726 0.818,1.001 1,1 ',
-    ),
-  })
+// Scroll virtuel
+let targetScroll = 0
+let currentScroll = 0
+let rafId = 0
+
+const MIN = 0
+const MAX = 4000 // "longueur" du fake scroll
+const SMOOTH = 0.08 // lissage
+const SPEED = 1 // sensibilité molette
+const PARALLAX = 0.35 // facteur de déplacement X
+
+const clamp = (v, min, max) => Math.max(min, Math.min(max, v))
+
+const onWheel = (e) => {
+  e.preventDefault()
+  targetScroll = clamp(targetScroll + e.deltaY * SPEED, MIN, MAX)
 }
+
+const tick = () => {
+  currentScroll += (targetScroll - currentScroll) * SMOOTH
+  const x = -currentScroll * PARALLAX
+
+  if (heroImg.value) {
+    heroImg.value.style.setProperty('--bg-x', `${x}px`)
+  }
+
+  rafId = requestAnimationFrame(tick)
+}
+
+const onCtaClick = (e) => {
+  e.preventDefault()
+  targetScroll = clamp(targetScroll + 600, MIN, MAX)
+}
+
+onMounted(() => {
+  window.addEventListener('wheel', onWheel, { passive: false })
+  rafId = requestAnimationFrame(tick)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('wheel', onWheel)
+  cancelAnimationFrame(rafId)
+})
 </script>
 
 <template>
@@ -26,10 +55,15 @@ const onCtaClick = () => {
 </template>
 
 <style scoped>
+:global(html),
+:global(body) {
+  overflow: hidden; /* important pour le fake scroll */
+}
+
 img {
   left: 0;
   top: 50%;
-  transform: translate(-0.5%, -50%);
+  transform: translate(calc(-0.5% + var(--bg-x, 0px)), -50%);
   height: 95vw;
   position: fixed;
   pointer-events: none;
