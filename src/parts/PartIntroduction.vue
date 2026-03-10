@@ -1,38 +1,18 @@
 <script setup>
 import { ref } from 'vue'
 import gsap from 'gsap'
-import { CustomEase } from 'gsap/CustomEase'
-
-const heroImg = ref(null)
-const h1 = ref(null)
-const a = ref(null)
-let moved = false
-const tl = gsap.timeline()
-
-const onCtaClick = () => {
-  if (moved === false) {
-    moved = !moved
-    gsap.to(heroImg.value, {
-      xPercent: -31,
-      duration: 2,
-      ease: CustomEase.create(
-        'custom',
-        'M0,0 C0.307,0.062 0.484,0.106 0.568,0.36 0.688,0.726 0.818,1.001 1,1 ',
-      ),
-    })
-    tl.to(h1.value, { opacity: 0, duration: 1 }).to(a.value, { opacity: 0, duration: 1 })
-    setTimeout(() => {
-      // tl.clear()
-      a.value.style.pointerEvents = 'none'
-    }, 100)
-  }
-}
 </script>
 
 <template>
-  <h1 ref="h1">Sapin porte-paroles</h1>
-  <a ref="a" href="#" @click="onCtaClick">Débuter l’expérience</a>
-  <img ref="heroImg" src="/background-test-nocrop.svg" alt="" />
+  <!-- <img ref="heroImg" src="/sapin.svg" alt="" /> -->
+  <div class="container">
+    <img class="t1" src="/tile-1.svg" alt="" />
+    <img class="t2" src="/tile-2.svg" alt="" />
+    <img class="t3" src="/tile-3.svg" alt="" />
+    <img class="t4" src="/tile-4.svg" alt="" />
+    <img class="t5" src="/tile-5.svg" alt="" />
+    <img class="t6" src="/tile-6.svg" alt="" />
+  </div>
   <div class="scroll"></div>
 </template>
 
@@ -42,32 +22,95 @@ const onCtaClick = () => {
   overflow: hidden;
 }
 
-img {
-  left: 0;
-  top: 50%;
-  transform: translate(-0.5%, -50%);
-  height: 95vw;
+/* img {
   position: fixed;
-  pointer-events: none;
+  transform: translate(-4%, -41%);
+  left: 0;
+  width: 360vw;
+} */
+
+.container {
+  position: inherit;
 }
 
-.scroll {
-  height: 300vh;
+@keyframes t1 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
 }
 
-a {
+@keyframes t2 {
+  0% {
+    transform: translate(100%, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.t1 {
+  object-fit: cover;
+  object-position: center;
   position: absolute;
-  left: 50%;
-  bottom: 20%;
-  transform: translate(-50%, 0);
-  width: 170px;
-  height: 170px;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid orange;
-  border-radius: 50%;
-  color: orange;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9; /* ou ton ratio */
+  /* animation: t1 1s ease-out forwards; */
+}
+
+.t2 {
+  transform: translate(100%, 0);
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9; /* ou ton ratio */
+  /* animation: t2 1s ease-out forwards; */
+}
+.t3 {
+  transform: translate(200%, 0);
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9; /* ou ton ratio */
+}
+.t4 {
+  transform: translate(0, -100%);
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9; /* ou ton ratio */
+}
+.t5 {
+  transform: translate(100%, -100%);
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9; /* ou ton ratio */
+}
+.t6 {
+  transform: translate(200%, -100%);
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9; /* ou ton ratio */
 }
 </style>
