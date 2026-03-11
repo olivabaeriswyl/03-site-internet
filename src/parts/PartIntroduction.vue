@@ -90,7 +90,7 @@ img {
   width: 1000px;
   scale: 450%;
   height: auto;
-  /* transition: all 3s ease; */
+  transition: all 3s ease;
 }
 
 @media (min-width: 600px) {
