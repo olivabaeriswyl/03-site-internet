@@ -8,15 +8,28 @@ onMounted(() => {
     view,
     (newVal) => {
       console.log('view changed:', newVal)
-      if (view.value === 1) {
-        heroImg.value.style.transformOrigin = '10% 45%'
-      } else if (view.value === 2) {
-        heroImg.value.style.transformOrigin = '72% 58%'
-      } else if (view.value === 3) {
-        heroImg.value.style.transformOrigin = '54% 88%'
-      } else if (view.value === 0) {
-        heroImg.value.style.transformOrigin = 'center center'
-        heroImg.value.style.scale = '50%'
+      if (window.innerWidth > 600) {
+        if (view.value === 1) {
+          heroImg.value.style.transformOrigin = '10% 45%'
+        } else if (view.value === 2) {
+          heroImg.value.style.transformOrigin = '72% 58%'
+        } else if (view.value === 3) {
+          heroImg.value.style.transformOrigin = '54% 88%'
+        } else if (view.value === 0) {
+          heroImg.value.style.transformOrigin = 'center center'
+          heroImg.value.style.scale = '50%'
+        }
+      } else {
+        if (view.value === 1) {
+          heroImg.value.style.transformOrigin = '2% 48.5%'
+        } else if (view.value === 2) {
+          heroImg.value.style.transformOrigin = '72% 58.5%'
+        } else if (view.value === 3) {
+          heroImg.value.style.transformOrigin = '46% 89%'
+        } else if (view.value === 0) {
+          heroImg.value.style.transformOrigin = 'center center'
+          heroImg.value.style.scale = '50%'
+        }
       }
     },
     { immediate: true },
@@ -75,9 +88,15 @@ onMounted(() => {
 
 img {
   width: 1000px;
-  scale: 500%;
+  scale: 450%;
   height: auto;
-  transition: all 3s ease;
+  /* transition: all 3s ease; */
+}
+
+@media (min-width: 600px) {
+  img {
+    scale: 500%;
+  }
 }
 
 @media (min-width: 1400px) {
