@@ -9,9 +9,10 @@ import ButtonStart from './../components/ButtonStart.vue'
         <div id="layout-title">
           <div id="layout-title-text">
             <p>Une expérience <em>interactive</em> par eikonlab</p>
-            <p>Découvrez tous vos <em>messages d'amour</em></p>
+            <p id="text-discover">Découvrez tous vos <em>messages d'amour</em></p>
           </div>
           <h1>Sapin porte-paroles</h1>
+          <p id="text-discover-mobile">Découvrez tous vos <em>messages d'amour</em></p>
         </div>
       </div>
     </div>
@@ -47,6 +48,10 @@ import ButtonStart from './../components/ButtonStart.vue'
   justify-content: space-between;
 }
 
+#text-discover-mobile {
+  display: none;
+}
+
 /* Texte bas */
 #layout-end-text {
   height: 12vh;
@@ -68,6 +73,14 @@ import ButtonStart from './../components/ButtonStart.vue'
   #layout-title-text {
     display: flex;
     flex-direction: column;
+  }
+
+  #text-discover-mobile {
+    display: block;
+  }
+
+  #text-discover {
+    display: none;
   }
 }
 </style>

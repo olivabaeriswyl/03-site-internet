@@ -26,4 +26,22 @@ header {
   background-color: var(--color-light-orange);
   color: var(--color-white);
 }
+
+@media (max-width: 992px) {
+  header {
+    padding-top: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding-top: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  header {
+    padding-top: 10px;
+  }
+}
 </style>
