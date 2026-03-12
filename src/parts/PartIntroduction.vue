@@ -1,9 +1,56 @@
 <script setup>
-import { ref, watch, onMounted } from 'vue'
-// import gsap from 'gsap'
+import { ref, watch, onMounted, onUnmounted } from 'vue'
+import { gsap } from 'gsap'
+
 const heroImg = ref(null)
 const view = ref(1)
+const origins = {
+  desktop: {
+    1: { x: 10, y: 45 },
+    2: { x: 72, y: 58 },
+    3: { x: 54, y: 88 },
+    0: { x: 50, y: 50 },
+  },
+  mobile: {
+    1: { x: 2, y: 48.5 },
+    2: { x: 72, y: 58.5 },
+    3: { x: 46, y: 89 },
+    0: { x: 50, y: 50 },
+  },
+}
+
+let targetScroll = 0
+let currentScroll = 0
+let rafId = 0
+
+const MIN = 0
+const MAX = 4000 // "longueur" du fake scroll
+const SMOOTH = 0.08 // lissage
+const SPEED = 1 // sensibilité molette
+const PARALLAX = 0.35 // facteur de déplacement X
+
+const clamp = (v, min, max) => Math.max(min, Math.min(max, v))
+
+const onWheel = (e) => {
+  e.preventDefault()
+  targetScroll = clamp(targetScroll + e.deltaY * SPEED, MIN, MAX)
+}
+
+const tick = () => {
+  currentScroll += (targetScroll - currentScroll) * SMOOTH
+  const x = -currentScroll * PARALLAX
+
+  if (heroImg.value) {
+    heroImg.value.style.setProperty('--bg-x', `${x}px`)
+  }
+
+  rafId = requestAnimationFrame(tick)
+}
+
 onMounted(() => {
+  window.addEventListener('wheel', onWheel, { passive: false })
+  rafId = requestAnimationFrame(tick)
+
   watch(
     view,
     (newVal) => {
@@ -35,6 +82,11 @@ onMounted(() => {
     { immediate: true },
   )
 })
+
+onUnmounted(() => {
+  window.removeEventListener('wheel', onWheel)
+  cancelAnimationFrame(rafId)
+})
 </script>
 
 <template>
@@ -53,6 +105,10 @@ onMounted(() => {
 :global(html),
 :global(body) {
   overflow: hidden;
+}
+
+.scroll {
+  height: 200vh;
 }
 
 .dev-nav {
