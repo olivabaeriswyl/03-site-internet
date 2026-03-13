@@ -35,11 +35,13 @@ import ButtonStart from './../components/ButtonStart.vue'
 <style scoped>
 .screen {
   height: 100vh;
+  position: relative;
 }
 
 /* Titre et sous titres */
 #layout-title {
   display: inline-block;
+  padding-top: 100px;
 }
 
 #layout-title-text {
@@ -54,22 +56,32 @@ import ButtonStart from './../components/ButtonStart.vue'
 
 /* Texte bas */
 #layout-end-text {
-  height: 12vh;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  position: absolute;
+  text-align: right;
+  right: 0;
+  bottom: 20px;
 }
 
 /* Position du bouton */
 #button-start {
-  height: 50vh;
+  height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 /* Responsive */
+@media (max-width: 992px) {
+  #layout-title {
+    padding-top: 50px;
+  }
+}
+
 @media (max-width: 768px) {
+  #layout-title {
+    padding-top: 40px;
+  }
+
   #layout-title-text {
     display: flex;
     flex-direction: column;
@@ -81,6 +93,18 @@ import ButtonStart from './../components/ButtonStart.vue'
 
   #text-discover {
     display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  #layout-title {
+    padding-top: 10px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  #button-start {
+    height: 30%;
   }
 }
 </style>
