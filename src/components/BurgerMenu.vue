@@ -33,9 +33,13 @@ onMounted(async () => {
 
   function moveDot(index) {
     const link = links[index]
+
+    links.forEach((l) => l.classList.remove('active'))
+    link.classList.add('active')
+
     const linkRect = link.getBoundingClientRect()
     const menuRect = link.closest('.menu').getBoundingClientRect()
-    const top = linkRect.top - menuRect.top + linkRect.height / 2 - 4 // centre du dot
+    const top = linkRect.top - menuRect.top + linkRect.height / 2 - 2
 
     gsap.to(dot, {
       duration: 0.5,
@@ -45,7 +49,6 @@ onMounted(async () => {
     })
   }
 
-  // initial position
   moveDot(0)
 })
 </script>
@@ -72,19 +75,23 @@ a {
   font-family: epilogue, sans-serif;
   font-size: 20px;
   font-weight: 400;
-  line-height: 30px;
   color: var(--color-blue);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
+  opacity: 1;
 }
 
 a:hover {
+  opacity: 0.6;
+}
+
+a.active {
   color: var(--color-orange);
 }
 
 ul {
   list-style-type: none;
-  padding-left: 0;
+  padding-left: 15px;
 }
 
 /* Style burger menu entier */
@@ -108,36 +115,20 @@ ul {
   align-self: flex-end;
 }
 
-/* Style lien */
-li a::after {
-  content: '•';
-  margin-left: 8px;
-  color: var(--color-orange);
-  opacity: 0;
-}
-
-li a.active::after {
-  opacity: 1;
-}
-
 /* Point activé */
 .menu {
   position: relative;
 }
 
-.menu li {
-  position: relative;
-}
-
 .active-dot {
   background-color: var(--color-orange);
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
 
   position: absolute;
   top: 0;
-  left: 100%;
+  left: 0;
   transform: translateY(0);
 }
 </style>
