@@ -32,16 +32,6 @@ import ButtonScroll from './../components/ButtonScroll.vue'
         </div>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-12">
-        <div id="layout-button-scroll">
-          <div id="position-button-scroll">
-            <ButtonScroll></ButtonScroll>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -65,18 +55,6 @@ img {
   padding-right: 0;
   display: flex;
   justify-content: flex-end;
-}
-
-/* Position bouton scroll */
-#layout-button-scroll {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-#position-button-scroll {
-  position: absolute;
 }
 
 /* Responsive */

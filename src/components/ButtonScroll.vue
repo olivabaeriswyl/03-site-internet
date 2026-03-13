@@ -27,7 +27,7 @@
 }
 
 p {
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 #line {

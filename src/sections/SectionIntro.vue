@@ -2,6 +2,7 @@
 import IntroStart from './../parts/IntroStart.vue'
 import IntroWords from './../parts/IntroWords.vue'
 import IntroText from './../parts/IntroText.vue'
+import IntroScroll from './../parts/IntroScroll.vue'
 </script>
 
 <template>
@@ -16,6 +17,10 @@ import IntroText from './../parts/IntroText.vue'
 
     <div class="container-fluid">
       <IntroText></IntroText>
+    </div>
+
+    <div class="container">
+      <IntroScroll></IntroScroll>
     </div>
   </div>
 </template>
