@@ -61,6 +61,12 @@ onMounted(() => {
 </template>
 
 <style scoped>
+:global(html),
+:global(body) {
+  padding: 0;
+  margin: 0;
+}
+
 /* .heroContainer {
   width: 100vw;
   height: 100vh;
