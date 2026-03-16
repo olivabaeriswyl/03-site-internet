@@ -2,7 +2,7 @@
 
 <template>
   <h3>Message mis en avant</h3>
-  <div>
+  <div id="layout-message">
     <p class="informations">Date</p>
     <p class="quote">Citation</p>
     <p class="informations">Name</p>
@@ -15,5 +15,9 @@
   font-size: 23px;
   font-weight: 300;
   line-height: 30px;
+}
+
+#layout-message {
+  display: flex;
 }
 </style>

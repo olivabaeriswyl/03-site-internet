@@ -3,14 +3,20 @@
 <template>
   <div class="screen">
     <div class="row">
-      <div class="col-10">
-        <div id="layout-number">
-          <p id="big-text">185</p>
-          <p id="sentence-number-messages">Messages <em>récoltés</em></p>
-          <div id="sentence-love-messages">
-            <img src="./../../img-icon-words-heart.png" id="icon-heart" alt="" />
-            <p>Tant de messages <em>d'amour</em> et de <em>soutien</em> partagés cette année</p>
-            <img src="./../../img-icon-words-hand.png" id="icon-hand" alt="" />
+      <div class="col-lg-9 col-xl-10">
+        <div id="layout-page">
+          <div id="layout-number">
+            <p id="big-text">185</p>
+            <p id="sentence-number-messages">Messages <em>récoltés</em></p>
+          </div>
+          <div id="layout-support-sentance">
+            <p>
+              Tant de messages
+              <em>d'amour <img src="./../../img-icon-words-heart.png" id="icon-heart" alt="" /></em>
+              et de
+              <em>soutien <img src="./../../img-icon-words-hand.png" id="icon-hand" alt="" /></em>
+              partagés cette année
+            </p>
           </div>
         </div>
       </div>
@@ -30,23 +36,27 @@
 }
 
 /* Mise en page */
-#layout-number {
-  padding-top: 30%;
+#layout-page {
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-top: 30%;
+}
+
+#layout-number {
+  display: flex;
   align-items: baseline;
 }
 
 #sentence-number-messages {
-  width: 300px;
-}
-
-#sentence-love-messages {
-  align-self: flex-start;
-  position: relative;
+  width: 210px;
 }
 
 /* Icones */
+em {
+  position: relative;
+}
+
 img {
   width: 38px;
   height: auto;
@@ -55,12 +65,73 @@ img {
 }
 
 #icon-heart {
-  top: -40px;
-  right: 170px;
+  top: -38px;
+  right: -20px;
 }
 
 #icon-hand {
-  bottom: 2px;
-  right: 20px;
+  bottom: -38px;
+  right: -20px;
+}
+
+@media (max-width: 1200px) {
+  #layout-page {
+    flex-direction: column;
+  }
+
+  #layout-support-sentance {
+    margin-top: 50px;
+    text-align: right;
+  }
+}
+
+@media (max-width: 576px) {
+  #big-text {
+    font-family: arima, sans-serif;
+    font-size: 140px;
+    font-weight: 400;
+    line-height: 250px;
+    margin: 0;
+    height: 250px;
+  }
+
+  #icon-hand {
+    bottom: -38px;
+    right: -20px;
+  }
+}
+
+@media (max-width: 531px) {
+  #big-text {
+    font-family: arima, sans-serif;
+    font-size: 140px;
+    font-weight: 400;
+    line-height: 250px;
+    margin: 0;
+    height: 250px;
+  }
+
+  #icon-hand {
+    bottom: -64px;
+    right: -20px;
+  }
+
+  #layout-support-sentance {
+    padding-left: 40px;
+  }
+}
+
+@media (max-width: 500px) {
+  #icon-hand {
+    bottom: -64px;
+    right: 0;
+  }
+}
+
+@media (max-width: 422px) {
+  #icon-hand {
+    bottom: -38px;
+    right: -20px;
+  }
 }
 </style>
