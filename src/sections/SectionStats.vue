@@ -6,7 +6,7 @@ import AllMessages from './../parts/StatsAllMessages.vue'
 </script>
 
 <template>
-  <div id="burger-recapitulatif">
+  <div id="burger-recapitulatif" class="burger-blue">
     <Statistics></Statistics>
 
     <HighlightedMessage></HighlightedMessage>

@@ -29,4 +29,10 @@ header {
   background-color: var(--color-light-orange);
   color: var(--color-white);
 }
+
+@media (max-width: 0px) {
+  h1 {
+    font-size: 30px;
+  }
+}
 </style>
