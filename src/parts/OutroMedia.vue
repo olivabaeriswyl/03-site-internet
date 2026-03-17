@@ -70,6 +70,7 @@ h2 {
 a {
   color: var(--color-blue);
   transition: all 0.2s ease;
+  text-decoration: underline 1.4px;
 }
 
 a:hover {
