@@ -23,13 +23,14 @@
   font-family: arima, sans-serif;
   font-size: 23px;
   font-weight: 300;
-  line-height: 30px;
+  line-height: 23px;
 }
 
 /* Mise en page  */
 #layout-message {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 #quote-block {
@@ -37,7 +38,7 @@
 }
 
 #quote {
-  margin: 20px 0;
+  margin: 0 0 20px;
 }
 
 /* Position informations  */
@@ -47,5 +48,18 @@
 
 #name {
   text-align: right;
+}
+
+@media (max-width: 768px) {
+  .informations {
+    font-family: arima, sans-serif;
+    font-size: 21px;
+    font-weight: 300;
+    line-height: 10px;
+  }
+
+  #quote {
+    margin: 0 0 10px;
+  }
 }
 </style>
