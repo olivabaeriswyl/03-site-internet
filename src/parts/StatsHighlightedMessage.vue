@@ -151,7 +151,8 @@ onMounted(() => {
     font-family: arima, sans-serif;
     font-size: 21px;
     font-weight: 300;
-    line-height: 10px;
+    line-height: 21px;
+    margin-bottom: 10px;
   }
 
   #quote {
