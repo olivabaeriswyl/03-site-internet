@@ -1,4 +1,98 @@
-<script setup></script>
+<script setup>
+import { ref, onMounted } from 'vue'
+import gsap from 'gsap'
+import messages from '@/data/highlighted-messages.json'
+
+const currentIndex = ref(0)
+const currentMessage = ref(messages[0])
+
+onMounted(() => {
+  const tl = gsap.timeline({ repeat: -1 })
+
+  // ÉTAT INITIAL
+  gsap.set('#quote', { x: -100, opacity: 0 })
+  gsap.set('#date', { y: -30, opacity: 0 })
+  gsap.set('#name', { y: 30, opacity: 0 })
+
+  // 🔁 TIMELINE
+  tl
+    // ENTRÉE
+    .to('#quote', {
+      x: 0,
+      opacity: 1,
+      duration: 0.6,
+      ease: 'power2.out',
+    })
+
+    .to(
+      '#date',
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.4,
+      },
+      '-=0.4',
+    )
+
+    .to(
+      '#name',
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.4,
+      },
+      '-=0.4',
+    )
+
+    // PAUSE
+    .to({}, { duration: 10 })
+
+    // SORTIE (fade uniquement pour quote)
+    .to('#quote', {
+      opacity: 0,
+      duration: 0.4,
+      ease: 'power1.in',
+    })
+
+    .to(
+      '#date',
+      {
+        y: -30,
+        opacity: 0,
+        duration: 0.4,
+      },
+      '-=0.3',
+    )
+
+    .to(
+      '#name',
+      {
+        y: 30,
+        opacity: 0,
+        duration: 0.4,
+      },
+      '-=0.3',
+    )
+
+    // 🔴 CHANGEMENT DE TEXTE (au bon moment)
+    .call(() => {
+      currentIndex.value = (currentIndex.value + 1) % messages.length
+      currentMessage.value = messages[currentIndex.value]
+    })
+
+    // 🔁 RESET POSITION AVANT NOUVELLE ENTRÉE
+    .set('#quote', { x: -100 })
+    .set('#date', { y: -30 })
+    .set('#name', { y: 30 })
+})
+
+// onMounted(() => {
+//   setInterval(() => {
+//     currentIndex.value = (currentIndex.value + 1) % messages.length
+//     currentMessage.value = messages[currentIndex.value]
+//   }, 10000) // 10 secondes
+// })
+</script>
 
 <template>
   <div class="screen">
@@ -7,9 +101,9 @@
       <div class="col-12">
         <div id="layout-message">
           <div id="quote-block">
-            <p class="informations" id="date">Date</p>
-            <p id="quote">Tu es forte et tu mérites d’être respectée tel que tu es ♡</p>
-            <p class="informations" id="name">Name</p>
+            <p class="informations" id="date">{{ currentMessage.date }}</p>
+            <p id="quote">{{ currentMessage.message }}</p>
+            <p class="informations" id="name">{{ currentMessage.name }}</p>
           </div>
         </div>
       </div>
@@ -35,10 +129,12 @@
 
 #quote-block {
   max-width: 637px;
+  overflow: hidden;
 }
 
 #quote {
   margin: 0 0 20px;
+  transition: opacity 0.3s;
 }
 
 /* Position informations  */

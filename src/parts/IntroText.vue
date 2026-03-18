@@ -1,6 +1,4 @@
-<script setup>
-import ButtonScroll from './../components/ButtonScroll.vue'
-</script>
+<script setup></script>
 
 <template>
   <div class="screen">

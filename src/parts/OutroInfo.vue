@@ -1,23 +1,5 @@
 <script setup>
-import { ref } from 'vue'
-
-const copied = ref(false)
-
-const copyLink = async () => {
-  try {
-    const url = window.location.origin + window.location.pathname
-
-    await navigator.clipboard.writeText(url)
-
-    copied.value = true
-
-    setTimeout(() => {
-      copied.value = false
-    }, 1000)
-  } catch (e) {
-    console.error('Erreur copie', e)
-  }
-}
+import ButtonShare from './../components/ButtonShare.vue'
 </script>
 
 <template>
@@ -48,9 +30,9 @@ const copyLink = async () => {
                 ><br />Pro Juventute (pour les 11-20 ans): <strong>147</strong>
               </p>
             </div>
-            <button @click="copyLink" :class="['btn-share', { 'btn-share--copied': copied }]">
-              <strong>{{ copied ? 'Lien copié' : 'Partager le site' }}</strong>
-            </button>
+            <div id="button-desktop">
+              <ButtonShare></ButtonShare>
+            </div>
           </div>
         </div>
       </div>
@@ -62,6 +44,9 @@ const copyLink = async () => {
           Avec les partenaires <a href="https://www.zonta.ch/fr/">Zonta Club Fribourg</a> et
           <a href="https://swiss-soroptimist.ch/fr/">Soroptimist International Club Fribourg</a>
         </p>
+        <div id="button-mobile">
+          <ButtonShare></ButtonShare>
+        </div>
       </div>
     </div>
     <div class="row">
@@ -144,33 +129,6 @@ a:hover {
 }
 
 /* Bouton */
-.btn-share {
-  border-radius: 29px;
-  padding: 12px 32px 15px;
-  width: 100%;
-  margin-top: 24px;
-
-  border: 1.4px solid #8fa9c8;
-  background-color: var(--color-light-blue);
-  color: var(--color-blue);
-
-  transition:
-    transform 0.4s ease,
-    color 0.2s ease,
-    border 0.2s ease;
-}
-
-button:hover {
-  color: var(--color-orange);
-  border: 1.4px solid var(--color-orange);
-  transform: scale(1.04);
-}
-
-.btn-share--copied {
-  color: var(--color-orange);
-  border: 1.4px solid var(--color-orange);
-  transform: scale(1.04);
-}
 
 /* Responsive */
 @media (min-width: 576px) and (max-width: 992px) {
@@ -183,6 +141,12 @@ button:hover {
 @media (max-width: 576px) {
   #layout-button-emergency {
     max-width: 100%;
+  }
+
+  #button-desktop {
+    pointer-events: none;
+    display: none;
+    opacity: 0;
   }
 }
 </style>
