@@ -10,6 +10,7 @@ body {
   background-color: var(--color-light-blue);
 }
 
+/* Pages */
 .screen {
   height: 100vh;
 }

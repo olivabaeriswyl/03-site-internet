@@ -2,42 +2,44 @@
 
 <template>
   <div class="screen">
-    <h3>Messages les plus récurrents</h3>
-    <div class="row">
-      <div class="col-12">
-        <div id="layout-sentence-top">
-          <div>
-            <p class="small-text">Tu n'es</p>
-            <p class="big-text">pas seule</p>
+    <div>
+      <h3>Messages les plus récurrents</h3>
+      <div class="row">
+        <div class="col-12">
+          <div id="layout-sentence-top">
+            <div>
+              <p class="small-text">Tu n'es</p>
+              <p class="big-text">pas seule</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-7 col-lg-6 offset-md-2 offset-lg-3 offset-xl-4">
-        <div id="layout-sentences">
-          <div id="sentence-violence">
-            <p class="small-text">La</p>
-            <p class="big-text">violence</p>
-            <p class="small-text specific-position-violence" id="specific-margin-violence-bottom">
-              n'est
-            </p>
-            <p class="big-text specific-position-violence">jamais acceptable</p>
-          </div>
-          <div id="sentence-believe">
-            <p class="small-text">Je te</p>
-            <p class="big-text">crois</p>
+      <div class="row">
+        <div class="col-md-7 col-lg-6 offset-md-2 offset-lg-3 offset-xl-4">
+          <div id="layout-sentences">
+            <div id="sentence-violence">
+              <p class="small-text">La</p>
+              <p class="big-text">violence</p>
+              <p class="small-text specific-position-violence" id="specific-margin-violence-bottom">
+                n'est
+              </p>
+              <p class="big-text specific-position-violence">jamais acceptable</p>
+            </div>
+            <div id="sentence-believe">
+              <p class="small-text">Je te</p>
+              <p class="big-text">crois</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <div id="sentence-report">
-          <p class="small-text" id="specific-position-dont">N'aie</p>
-          <p class="big-text" id="specific-position-scared">pas peur</p>
-          <p class="small-text" id="specific-margin-report-top-bottom">de</p>
-          <p class="big-text">dénoncer</p>
+      <div class="row">
+        <div class="col-12">
+          <div id="sentence-report">
+            <p class="small-text" id="specific-position-dont">N'aie</p>
+            <p class="big-text" id="specific-position-scared">pas peur</p>
+            <p class="small-text" id="specific-margin-report-top-bottom">de</p>
+            <p class="big-text">dénoncer</p>
+          </div>
         </div>
       </div>
     </div>
@@ -45,6 +47,10 @@
 </template>
 
 <style scoped>
+.screen {
+  padding-top: 6%;
+}
+
 /* Fonts */
 .small-text {
   font-family: arima, sans-serif;

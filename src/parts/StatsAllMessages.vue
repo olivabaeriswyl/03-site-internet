@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted } from 'vue'
 import gsap from 'gsap'
+import allMessages from '@/data/messages-sapin-porte-paroles.json'
 
 // Animation textes
 onMounted(() => {
@@ -41,6 +42,7 @@ onMounted(() => {
     <div id="tree-container">
       <svg
         class="tree-overlay"
+        id="text-top"
         width="405"
         height="249"
         viewBox="0 0 405 249"
@@ -67,6 +69,7 @@ onMounted(() => {
 
       <svg
         class="tree-overlay"
+        id="text-middle-left"
         width="474"
         height="483"
         viewBox="0 0 474 483"
@@ -91,6 +94,7 @@ onMounted(() => {
 
       <svg
         class="tree-overlay"
+        id="text-middle-right"
         width="493"
         height="180"
         viewBox="0 0 493 180"
@@ -115,6 +119,7 @@ onMounted(() => {
 
       <svg
         class="tree-overlay"
+        id="text-bottom-left"
         width="655"
         height="357"
         viewBox="0 0 655 357"
@@ -139,6 +144,7 @@ onMounted(() => {
 
       <svg
         class="tree-overlay"
+        id="text-bottom-right"
         width="581"
         height="256"
         viewBox="0 0 581 256"
@@ -204,13 +210,13 @@ button:hover {
 }
 
 #tree-background {
-  width: 100%;
+  width: 50%;
   display: block;
 }
 
-/* .tree-overlay {
+.tree-overlay {
   position: absolute;
-} */
+}
 
 /* Font */
 text {
@@ -218,5 +224,41 @@ text {
   font-size: 22px;
   font-weight: 400;
   fill: rgb(255, 255, 0);
+}
+
+/* Position courbes */
+#text-top {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#text-middle-left {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#text-middle-right {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#text-bottom-left {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#text-bottom-right {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 </style>

@@ -4,65 +4,65 @@ import ButtonShare from './../components/ButtonShare.vue'
 
 <template>
   <div class="screen">
-    <div class="row">
-      <div class="col-12 col-sm-10 col-lg-5 offset-0 offset-lg-1">
-        <p>
-          Vous êtes <strong>victime</strong> ou avez été
-          <strong>victime de violences</strong> physiques, psychiques ou sexuelles ou avez besoin
-          d’aide ?
-          <a href="https://www.victimepasseule.ch/post/aide-aux-victimes">
-            <strong>Voici la liste des contacts utiles.</strong>
-          </a>
-        </p>
-        <p>
-          <strong>Vous souhaitez témoigner anonymement ?</strong> Vous pouvez transmettre votre
-          témoignage <a href="https://www.victimepasseule.ch/formulaire"><strong>ici</strong></a> !
-        </p>
-      </div>
-      <div class="col-12 col-lg-4 offset-0 offset-lg-1">
-        <div id="layout-responsive-button-emergency">
-          <div id="layout-button-emergency">
-            <div id="emergency">
-              <p><strong>Numéros d'urgence</strong></p>
-              <p>
-                Police: <strong>117</strong><br />Ambulance: <strong>144</strong><br />La main
-                tendue: <strong>143</strong><br /><a href="https://www.ciao.ch/">Ciao.ch</a
-                ><br />Pro Juventute (pour les 11-20 ans): <strong>147</strong>
-              </p>
-            </div>
-            <div id="button-desktop">
-              <ButtonShare></ButtonShare>
+    <div>
+      <div class="row">
+        <div class="col-12 col-sm-10 col-lg-5 offset-0 offset-lg-1">
+          <p>
+            Vous êtes <strong>victime</strong> ou avez été
+            <strong>victime de violences</strong> physiques, psychiques ou sexuelles ou avez besoin
+            d’aide ?
+            <a href="https://www.victimepasseule.ch/post/aide-aux-victimes">
+              <strong>Voici la liste des contacts utiles.</strong>
+            </a>
+          </p>
+          <p>
+            <strong>Vous souhaitez témoigner anonymement ?</strong> Vous pouvez transmettre votre
+            témoignage
+            <a href="https://www.victimepasseule.ch/formulaire"><strong>ici</strong></a> !
+          </p>
+        </div>
+        <div class="col-12 col-lg-4 offset-0 offset-lg-1">
+          <div id="layout-responsive-emergency">
+            <div id="layout-emergency">
+              <div id="emergency">
+                <p><strong>Numéros d'urgence</strong></p>
+                <p>
+                  Police: <strong>117</strong><br />Ambulance: <strong>144</strong><br />La main
+                  tendue: <strong>143</strong><br /><a href="https://www.ciao.ch/">Ciao.ch</a
+                  ><br />Pro Juventute (pour les 11-20 ans): <strong>147</strong>
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-12 col-md-7 col-lg-4 offset-md-1 offset-lg-2">
-        <p>Par l'association <a href="https://www.victimepasseule.ch/">Victime pas seule</a></p>
-        <p>
-          Avec les partenaires <a href="https://www.zonta.ch/fr/">Zonta Club Fribourg</a> et
-          <a href="https://swiss-soroptimist.ch/fr/">Soroptimist International Club Fribourg</a>
-        </p>
-        <div id="button-mobile">
+      <div class="row">
+        <div class="col-12 col-md-7 col-lg-4 offset-md-1 offset-lg-2">
+          <p>
+            Sur une idée de l'association
+            <a href="https://www.victimepasseule.ch/">Victime pas seule</a>, réalisation
+            <a href="https://www.zonta.ch/fr/">Zonta Club Fribourg</a> et
+            <a href="https://www.eikon.ch/departments/eikonlab/">eikonlab</a>, en partenariat avec
+            <a href="https://swiss-soroptimist.ch/fr/">Soroptimist International Club Fribourg</a>
+          </p>
           <ButtonShare></ButtonShare>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-12 col-sm-8 col-md-7 col-lg-5 offset-0 offset-sm-4 offset-md-5 offset-lg-7">
-        <div id="credits">
-          <div id="layout-credits-text">
-            <p><strong>2026 © Victime pas seule</strong></p>
-            <p>
-              Réalisation
-              <a href="https://www.eikon.ch/departments/eikonlab/"><strong>eikonlab</strong></a
-              ><br />
-              Conception du site - Oliva Baeriswyl et Flavio Rotunno<br />After movie - Laurianne
-              Sauteur et Elise Mutrux
-            </p>
+      <div class="row">
+        <div class="col-12 col-sm-8 col-md-7 col-lg-5 offset-0 offset-sm-4 offset-md-5 offset-lg-7">
+          <div id="credits">
+            <div id="layout-credits-text">
+              <p><strong>2026 © Victime pas seule</strong></p>
+              <p>
+                Réalisation
+                <a href="https://www.eikon.ch/departments/eikonlab/"><strong>eikonlab</strong></a>
+                <br />
+                Conception du site - Oliva Baeriswyl et Flavio Rotunno<br />After movie - Laurianne
+                Sauteur et Elise Mutrux
+              </p>
+            </div>
+            <img src="./../../img-credits.png" alt="" />
           </div>
-          <img src="./../../img-credits.png" alt="" />
         </div>
       </div>
     </div>
@@ -70,6 +70,11 @@ import ButtonShare from './../components/ButtonShare.vue'
 </template>
 
 <style scoped>
+.screen {
+  display: flex;
+  align-items: flex-end;
+}
+
 /* Liens */
 a {
   color: var(--color-blue);
@@ -93,7 +98,7 @@ a:hover {
   padding: 30px;
 }
 
-#layout-button-emergency {
+#layout-emergency {
   max-width: 320px;
 }
 
@@ -112,6 +117,7 @@ a:hover {
 
 #credits {
   position: relative;
+  padding-bottom: 20px;
 }
 
 #credits img {
@@ -132,14 +138,14 @@ a:hover {
 
 /* Responsive */
 @media (min-width: 576px) and (max-width: 992px) {
-  #layout-responsive-button-emergency {
+  #layout-responsive-emergency {
     display: flex;
     justify-content: flex-end;
   }
 }
 
 @media (max-width: 576px) {
-  #layout-button-emergency {
+  #layout-emergency {
     max-width: 100%;
   }
 

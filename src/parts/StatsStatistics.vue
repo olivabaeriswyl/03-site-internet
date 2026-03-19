@@ -2,21 +2,25 @@
 
 <template>
   <div class="screen">
-    <div class="row">
-      <div class="col-lg-9 col-xl-10">
-        <div id="layout-page">
-          <div id="layout-number">
-            <p id="big-text">185</p>
-            <p id="sentence-number-messages">Messages <em>récoltés</em></p>
-          </div>
-          <div id="layout-support-sentance">
-            <p>
-              Tant de messages
-              <em>d'amour <img src="./../../img-icon-words-heart.png" id="icon-heart" alt="" /></em>
-              et de
-              <em>soutien <img src="./../../img-icon-words-hand.png" id="icon-hand" alt="" /></em>
-              partagés cette année
-            </p>
+    <div>
+      <div class="row">
+        <div class="col-lg-9 col-xl-10">
+          <div id="layout-page">
+            <div id="layout-number">
+              <p id="big-text">185</p>
+              <p id="sentence-number-messages">Messages <em>récoltés</em></p>
+            </div>
+            <div id="layout-support-sentance">
+              <p>
+                Tant de messages
+                <em
+                  >d'amour <img src="./../../img-icon-words-heart.png" id="icon-heart" alt=""
+                /></em>
+                et de
+                <em>soutien <img src="./../../img-icon-words-hand.png" id="icon-hand" alt="" /></em>
+                partagés cette année
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -25,6 +29,11 @@
 </template>
 
 <style scoped>
+.screen {
+  display: flex;
+  align-items: center;
+}
+
 /* Font */
 #big-text {
   font-family: arima, sans-serif;
@@ -40,7 +49,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  padding-top: 30%;
+  padding-top: 10%;
 }
 
 #layout-number {
