@@ -1,51 +1,85 @@
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, computed, onMounted, watch, nextTick } from 'vue'
 import gsap from 'gsap'
 import messages from '@/data/messages-sapin-porte-paroles.json'
 
 // Messages et filtres
-const activeCategory = ref('category-support') // catégorie par défaut
+// // catégorie par défaut
+const activeCategory = ref('category-support')
 
+// // filtrage
 const filteredMessages = computed(() => {
   return messages.filter((m) => m.category === activeCategory.value)
 })
 
-const displayedMessages = ref([])
+// // construction du texte et espacement
+const streams = ref([])
 
-function updateDisplayedMessages() {
-  const shuffled = [...filteredMessages.value].sort(() => 0.5 - Math.random())
-
-  displayedMessages.value = shuffled.slice(0, 5)
+function buildMessageStream(messages) {
+  const base = messages.map((m) => `\u00A0\u00A0\u00A0${m.message}\u00A0\u00A0\u00A0`).join(' ✦ ')
+  return base + ' ✦ ' + base
 }
 
-watch(activeCategory, () => {
-  updateDisplayedMessages()
-})
+function updateStreams() {
+  const shuffled = [...filteredMessages.value].sort(() => 0.5 - Math.random())
 
-// Animation textes
+  streams.value = Array.from({ length: 5 }, (_, i) => {
+    const rotated = shuffled.slice(i).concat(shuffled.slice(0, i))
+    return buildMessageStream(rotated)
+  })
+}
 
-onMounted(() => {
-  updateDisplayedMessages()
+const texts = [
+  { id: '#text-top', duration: 28, delay: 0 },
+  { id: '#text-middle-left', duration: 32, delay: 1 },
+  { id: '#text-middle-right', duration: 26, delay: 1 },
+  { id: '#text-bottom-left', duration: 34, delay: 0 },
+  { id: '#text-bottom-right', duration: 30, delay: 1 },
+]
 
-  const texts = [
-    { id: '#text-top', duration: 30 },
-    { id: '#text-middle-left', duration: 30 },
-    { id: '#text-middle-right', duration: 30 },
-    { id: '#text-bottom-left', duration: 30 },
-    { id: '#text-bottom-right', duration: 30 },
-  ]
-
+// // animation
+function startAnimations() {
   texts.forEach((t) => {
     gsap.fromTo(
       t.id,
-      { attr: { startOffset: '100%' } },
+      { attr: { startOffset: '0%' } },
       {
         attr: { startOffset: '-100%' },
         duration: t.duration,
+        delay: t.delay,
         ease: 'none',
         repeat: -1,
       },
     )
+  })
+}
+
+// // chargement et changement de filtre
+onMounted(async () => {
+  updateStreams()
+
+  await nextTick()
+
+  startAnimations()
+})
+
+watch(activeCategory, async () => {
+  await gsap.to('textPath', {
+    opacity: 0,
+    duration: 0.4,
+  })
+
+  gsap.killTweensOf('textPath')
+
+  updateStreams()
+
+  await nextTick()
+
+  startAnimations()
+
+  gsap.to('textPath', {
+    opacity: 1,
+    duration: 0.2,
   })
 })
 
@@ -118,7 +152,7 @@ function setFilter(category) {
         <g class="text-mask">
           <text>
             <textPath id="text-top" href="#curve-text-top" startOffset="0%">
-              {{ displayedMessages[0]?.message }}
+              {{ streams[0] }}
             </textPath>
           </text>
         </g>
@@ -144,7 +178,7 @@ function setFilter(category) {
         />
         <text>
           <textPath id="text-middle-left" href="#curve-text-middle-left" startOffset="0%">
-            {{ displayedMessages[1]?.message }}
+            {{ streams[1] }}
           </textPath>
         </text>
       </svg>
@@ -169,7 +203,7 @@ function setFilter(category) {
         />
         <text>
           <textPath id="text-middle-right" href="#curve-text-middle-right" startOffset="0%">
-            {{ displayedMessages[2]?.message }}
+            {{ streams[2] }}
           </textPath>
         </text>
       </svg>
@@ -194,7 +228,7 @@ function setFilter(category) {
         />
         <text>
           <textPath id="text-bottom-left" href="#curve-text-bottom-left" startOffset="0%">
-            {{ displayedMessages[3]?.message }}
+            {{ streams[3] }}
           </textPath>
         </text>
       </svg>
@@ -219,17 +253,13 @@ function setFilter(category) {
         />
         <text>
           <textPath id="text-bottom-right" href="#curve-text-bottom-right" startOffset="0%">
-            {{ displayedMessages[4]?.message }}
+            {{ streams[4] }}
           </textPath>
         </text>
       </svg>
 
-      <img id="tree-background" src="./../../img-whole-tree.png" alt="" />
+      <img id="tree-background" src="./../../img-all-messages-desktop.png" alt="" />
     </div>
-  </div>
-
-  <div class="screen">
-    <div id="page-layout"></div>
   </div>
 </template>
 
@@ -301,10 +331,11 @@ h2 {
 #tree-container {
   position: relative;
   height: 100%;
+  pointer-events: none;
 }
 
 #tree-background {
-  margin-top: -80px;
+  /* Pour image pleine: margin-top: -100px; */
   width: 780px;
   height: auto;
 }
@@ -343,7 +374,7 @@ text {
 
 #text-bottom-right {
   right: -40px;
-  bottom: 30px;
+  bottom: 25px;
 }
 
 @media (max-width: 1400px) {
