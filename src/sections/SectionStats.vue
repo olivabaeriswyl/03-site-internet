@@ -3,6 +3,7 @@ import StatsStatistics from './../parts/StatsStatistics.vue'
 import StatsHighlightedMessage from './../parts/StatsHighlightedMessage.vue'
 import StatsRecurringMessages from './../parts/StatsRecurringMessages.vue'
 import StatsAllMessages from './../parts/StatsAllMessages.vue'
+import StatsScrollBg from './../parts/StatsScrollBg.vue'
 import Timeline from './../components/Timeline.vue'
 import TimelineMobile from './../components/TimelineMobile.vue'
 
@@ -52,10 +53,24 @@ import TimelineMobile from './../components/TimelineMobile.vue'
     <div class="container">
       <StatsAllMessages></StatsAllMessages>
     </div>
+
+    <div id="scroll-bg">
+      <StatsScrollBg></StatsScrollBg>
+    </div>
   </div>
 </template>
 
 <style scoped>
+#scroll-bg {
+  position: absolute;
+  overflow: hidden;
+  height: 300vh;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 /* Position timeline */
 /* .section-timeline {
   position: relative;
