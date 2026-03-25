@@ -8,10 +8,29 @@ const heroImg = ref(null)
 const heroContainer = ref(null)
 
 onMounted(() => {
+  const isMobile = window.innerWidth < 800
+
+  const values = isMobile
+    ? {
+        startX: '135%',
+        startY: '-15%',
+        midX: '-120%',
+        midY: '-50%',
+        endX: '65%',
+        endY: '-250%',
+      }
+    : {
+        startX: '175%',
+        startY: '-10%',
+        midX: '-90%',
+        midY: '-60%',
+        endX: '80%',
+        endY: '-270%',
+      }
   ctx = gsap.context(() => {
     gsap.set(heroImg.value, {
-      x: '175%',
-      y: '-10%',
+      x: values.startX,
+      y: values.startY,
     })
 
     const tl = gsap.timeline({
@@ -25,14 +44,14 @@ onMounted(() => {
 
     // 1ère moitié du scroll → point A
     tl.to(heroImg.value, {
-      x: '-90%',
-      y: '-60%',
+      x: values.midX,
+      y: values.midY,
     })
 
     // 2ème moitié du scroll → point B
     tl.to(heroImg.value, {
-      x: '80%',
-      y: '-270%',
+      x: values.endX,
+      y: values.endY,
     })
   })
 })
