@@ -35,7 +35,9 @@ onUnmounted(() => ctx.revert())
 
 <template>
   <div class="bg-container">
-    <img ref="heroImg" class="bg-img" src="/background-test-nocrop.svg" alt="" />
+    <img class="bg-img" src="/bg-p1.svg" alt="" />
+    <img class="bg-img-2" src="/bg-p2.svg" alt="" />
+    <img class="bg-img-3" src="/bg-p3.svg" alt="" />
   </div>
 </template>
 
@@ -43,11 +45,9 @@ onUnmounted(() => ctx.revert())
 .bg-container {
   position: fixed;
   overflow: hidden;
-  top: 0;
-  left: 0;
+  inset: 0;
   z-index: 2;
   height: 100vh;
-  width: 100%;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -55,9 +55,29 @@ onUnmounted(() => ctx.revert())
 }
 
 .bg-img {
-  width: auto;
-  height: auto;
-  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.bg-img-2 {
+  position: absolute;
+  left: 50%;
+  transform: translate(50%, 0);
+}
+
+.bg-img-3 {
+  position: absolute;
+  left: 50%;
+  transform: translate(150%, 0);
+}
+
+@media (max-aspect-ratio: 19/9) {
+  .bg-img,
+  .bg-img-2,
+  .bg-img-3 {
+    height: 100vh;
+  }
 }
 
 /* @media (min-width: 600px) {
