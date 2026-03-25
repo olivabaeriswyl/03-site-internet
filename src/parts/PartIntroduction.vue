@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
@@ -8,49 +8,34 @@ const heroImg = ref(null)
 const heroContainer = ref(null)
 
 onMounted(() => {
-  if (heroImg?.value && heroContainer?.value) {
-    console.log('ok')
-    gsap.to(heroImg.value, {
-      // transformOrigin: '10% 45%',
-      // x: '-200%',
-      // y: '-100%',
-      // duration: 10,
+  ctx = gsap.context(() => {
+    gsap.set(heroImg.value, {
+      x: '175%',
+      y: '-10%',
+    })
 
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: heroContainer.value,
         start: 'top top',
-        // end: 'bottom top',
+        end: 'bottom top',
         scrub: true,
       },
     })
-  }
+
+    // 1ère moitié du scroll → point A
+    tl.to(heroImg.value, {
+      x: '-90%',
+      y: '-60%',
+    })
+
+    // 2ème moitié du scroll → point B
+    tl.to(heroImg.value, {
+      x: '80%',
+      y: '-270%',
+    })
+  })
 })
-// const view = ref(1)
-// const origins = {
-//   desktop: [
-//     { x: 10, y: 45 },
-//     { x: 72, y: 58 },
-//     { x: 54, y: 88 },
-//     { x: 50, y: 50 },
-//   ],
-//   mobile: [
-//     { x: 2, y: 48.5 },
-//     { x: 72, y: 58.5 },
-//     { x: 46, y: 89 },
-//     { x: 50, y: 50 },
-//   ],
-// }
-
-// onMounted(() => {
-//   heroImg.value.style.transformOrigin = '10% 45%'
-//   window.addEventListener('wheel', onWheel, { passive: false })
-//   rafId = requestAnimationFrame(tick)
-// })
-
-// onUnmounted(() => {
-//   window.removeEventListener('wheel', onWheel)
-//   cancelAnimationFrame(rafId)
-// })
 </script>
 
 <template>
@@ -67,32 +52,6 @@ onMounted(() => {
   margin: 0;
 }
 
-/* .heroContainer {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-  background-color: aqua;
-}
-
-.heroImg {
-  position: absolute;
-  top: 0%;
-  left: 0%;
-  width: 1000px;
-  scale: 500%;
-  height: auto;
-} */
-
-/* :global(html),
-:global(body) {
-  overflow: hidden;
-}*/
-
-/* .scroll {
-  height: 200vh;
-} */
-
 .heroContainer {
   position: relative;
   overflow: hidden;
@@ -104,9 +63,9 @@ onMounted(() => {
 }
 
 img {
-  width: 80vw;
+  width: 1200px;
   scale: 450%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   /* transition: all 3s ease; */
@@ -123,13 +82,4 @@ img {
     width: 80vw;
   }
 }
-
-/* @media (max-aspect-ratio: 16/10) {
-  img {
-    width: auto;
-    position: fixed;
-    left: 0;
-    top: 0;
-  }
-} */
 </style>
