@@ -211,7 +211,7 @@ ul {
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 10;
+  z-index: 20;
 }
 
 /* Bouton de l'icone du burger */

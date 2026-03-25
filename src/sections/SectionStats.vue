@@ -7,44 +7,36 @@ import Timeline from './../components/Timeline.vue'
 import TimelineMobile from './../components/TimelineMobile.vue'
 
 // TEST FRISE
-import gsap from 'gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
-import { onMounted, nextTick } from 'vue'
+// import gsap from 'gsap'
+// import ScrollTrigger from 'gsap/ScrollTrigger'
+// import { onMounted, nextTick } from 'vue'
 
-gsap.registerPlugin(ScrollTrigger)
+// gsap.registerPlugin(ScrollTrigger)
 
-onMounted(async () => {
-  await nextTick()
+// onMounted(async () => {
+//   await nextTick()
 
-  const section = document.querySelector('.section-timeline')
-  const timeline = document.querySelector('.timeline-container')
+//   const section = document.querySelector('.section-timeline')
+//   const timeline = document.querySelector('.timeline-container')
 
-  if (!section || !timeline) return
+//   if (!section || !timeline) return
 
-  gsap.to(timeline, {
-    y: section.offsetHeight - timeline.offsetHeight,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: section,
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: true,
-      markers: true, // 🔥 debug
-    },
-  })
-})
+//   gsap.to(timeline, {
+//     y: section.offsetHeight - timeline.offsetHeight,
+//     ease: 'none',
+//     scrollTrigger: {
+//       trigger: section,
+//       start: 'top top',
+//       end: 'bottom bottom',
+//       scrub: true,
+//       markers: true, // 🔥 debug
+//     },
+//   })
+// })
 </script>
 
 <template>
   <div id="burger-recapitulatif" class="burger-blue timeline-parent-position">
-    <TimelineMobile></TimelineMobile>
-
-    <div id="section-timeline">
-      <div id="timeline-container">
-        <Timeline></Timeline>
-      </div>
-    </div>
-
     <div class="container">
       <StatsStatistics></StatsStatistics>
     </div>
@@ -65,7 +57,7 @@ onMounted(async () => {
 
 <style scoped>
 /* Position timeline */
-#section-timeline {
+/* .section-timeline {
   position: relative;
 }
 
@@ -74,4 +66,10 @@ onMounted(async () => {
   top: 0;
   right: 0;
 }
+
+#timeline-container-mobile {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+} */
 </style>

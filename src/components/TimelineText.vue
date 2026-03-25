@@ -54,6 +54,7 @@ strong {
 #big-line {
   flex: 1;
   height: 1px;
+  min-height: 1px;
   background-color: var(--color-orange);
   margin-left: 8px;
 }

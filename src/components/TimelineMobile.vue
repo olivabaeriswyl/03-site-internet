@@ -71,11 +71,13 @@ import TimelineMobileMonth from './TimelineMobileMonth.vue'
     ></TimelineMobileText>
     <TimelineMobileLine></TimelineMobileLine>
     <TimelineMobileLine></TimelineMobileLine>
-    <TimelineMobileText
-      date="22 mars"
-      location="Emmenbrücke, Lucerne."
-      age="La femme a atteint l'âge de 40 ans, l'âge de sa fille n'est pas connu."
-    ></TimelineMobileText>
+    <div id="text-width">
+      <TimelineMobileText
+        date="22 mars"
+        location="Emmenbrücke, Lucerne."
+        age="La femme a atteint l'âge de 40 ans, l'âge de sa fille n'est pas connu."
+      ></TimelineMobileText>
+    </div>
     <TimelineMobileLine></TimelineMobileLine>
     <TimelineMobileText
       date="24 mars"
@@ -241,7 +243,9 @@ import TimelineMobileMonth from './TimelineMobileMonth.vue'
   font-weight: 700;
   line-height: 18px;
   color: var(--color-orange);
-  padding: 0 100px;
+
+  min-width: 400px;
+  padding: 0 60px;
 
   align-self: flex-start;
 }
@@ -250,4 +254,9 @@ import TimelineMobileMonth from './TimelineMobileMonth.vue'
 /* :deep(.month-position) {
   align-self: flex-start;
 } */
+
+/* Largeur long texte */
+#text-width :deep(#timeline-wrapper) {
+  width: 270px;
+}
 </style>

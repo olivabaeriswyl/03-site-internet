@@ -20,6 +20,6 @@ p {
   font-weight: 400;
   line-height: 16px;
   margin: 0;
-  padding-top: 3px;
+  padding-bottom: 4px;
 }
 </style>

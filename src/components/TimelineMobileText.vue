@@ -23,7 +23,7 @@ defineProps({
 
 <style scoped>
 #timeline-wrapper {
-  width: 210px;
+  width: 200px;
   display: flex;
 }
 
@@ -48,8 +48,9 @@ strong {
 
 /* Mise en page ligne */
 #big-line {
-  height: 65px;
+  height: 75px;
   width: 1px;
+  min-width: 1px;
   background-color: var(--color-orange);
   margin-right: 6px;
 }
