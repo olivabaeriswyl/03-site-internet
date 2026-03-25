@@ -15,6 +15,46 @@ gsap.registerPlugin(ScrollTrigger)
 
 // FRISE
 onMounted(() => {
+  const timeline = document.querySelector('#timeline-container')
+  const section = document.querySelector('main')
+
+  // 🔥 état initial (caché à droite)
+  gsap.set(timeline, {
+    x: 80,
+    opacity: 0,
+  })
+
+  // 🔥 animation principale liée au scroll
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 1, // 🔥 fluide (pas figé)
+      },
+    })
+    .to(timeline, {
+      x: 0,
+      opacity: 1,
+      ease: 'power2.out',
+      duration: 0.2,
+    })
+    .to(timeline, {
+      y: () => -(timeline.scrollHeight - window.innerHeight),
+      ease: 'none',
+      duration: 1,
+    })
+    .to(timeline, {
+      x: 0,
+      opacity: 0,
+      ease: 'power2.in',
+      duration: 0.2,
+    })
+})
+
+// FRISE MOBILE
+onMounted(() => {
   const timeline = document.querySelector('#timeline-container-mobile')
   const section = document.querySelector('main') // la section exacte
 
@@ -88,11 +128,12 @@ main {
 }
 
 #timeline-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   z-index: 10;
   pointer-events: none;
+  overflow: hidden;
 }
 
 #timeline-container-mobile {
