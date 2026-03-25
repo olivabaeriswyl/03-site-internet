@@ -6,8 +6,9 @@
 
 <style scoped>
 #line {
-  width: 26px;
-  height: 1px;
+  width: 1px;
+  min-width: 1px;
+  height: 26px;
   background-color: var(--color-orange);
 }
 </style>

@@ -1,4 +1,40 @@
-<script setup></script>
+<script setup>
+// import { onMounted, nextTick } from 'vue'
+// import gsap from 'gsap'
+// import ScrollTrigger from 'gsap/ScrollTrigger'
+
+// gsap.registerPlugin(ScrollTrigger)
+
+// onMounted(async () => {
+//   await nextTick()
+
+//   const words = gsap.utils.toArray('#layout-all-words p')
+
+//   // état initial → invisible
+//   gsap.set(words, {
+//     opacity: 0,
+//     x: -40,
+//   })
+
+//   // timeline liée à la section
+//   gsap
+//     .timeline({
+//       scrollTrigger: {
+//         trigger: '#intro-words',
+//         start: 'top 100%', // quand on ARRIVE sur la page 2
+//         end: 'middle 20%', // quand on QUITTE la page 2
+//         scrub: true, // lie au scroll → entrée + sortie auto
+//       },
+//     })
+//     .to(words, {
+//       opacity: 1,
+//       x: 0,
+//       stagger: 0.2,
+//       duration: 1,
+//       ease: 'power2.out',
+//     })
+// })
+</script>
 
 <template>
   <div class="screen" id="intro-words">

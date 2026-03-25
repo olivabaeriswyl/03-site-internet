@@ -4,6 +4,7 @@ import StatsHighlightedMessage from './../parts/StatsHighlightedMessage.vue'
 import StatsRecurringMessages from './../parts/StatsRecurringMessages.vue'
 import StatsAllMessages from './../parts/StatsAllMessages.vue'
 import Timeline from './../components/Timeline.vue'
+import TimelineMobile from './../components/TimelineMobile.vue'
 
 // TEST FRISE
 import gsap from 'gsap'
@@ -36,6 +37,8 @@ onMounted(async () => {
 
 <template>
   <div id="burger-recapitulatif" class="burger-blue timeline-parent-position">
+    <TimelineMobile></TimelineMobile>
+
     <div id="section-timeline">
       <div id="timeline-container">
         <Timeline></Timeline>
