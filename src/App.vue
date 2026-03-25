@@ -16,39 +16,77 @@ gsap.registerPlugin(ScrollTrigger)
 onMounted(() => {
   const mm = gsap.matchMedia()
 
-  // DESKTOP
+  // DESKTOP PREMIER TEST
+  // mm.add('(min-width: 993px)', () => {
+  //   const timeline = document.querySelector('#timeline-container')
+  //   const section = document.querySelector('main')
+
+  //   gsap.set(timeline, { x: 80, opacity: 0, y: 0 })
+
+  //   gsap
+  //     .timeline({
+  //       scrollTrigger: {
+  //         trigger: section,
+  //         start: 'top top',
+  //         end: 'bottom bottom',
+  //         scrub: 1,
+  //       },
+  //     })
+  //     .to(timeline, {
+  //       x: 0,
+  //       opacity: 1,
+  //       ease: 'power2.out',
+  //       duration: 0.2,
+  //     })
+  //     .to(timeline, {
+  //       y: () => -(timeline.scrollHeight - window.innerHeight),
+  //       ease: 'none',
+  //       duration: 1,
+  //     })
+  //     .to(timeline, {
+  //       x: 0,
+  //       opacity: 1,
+  //       ease: 'power2.in',
+  //       duration: 0.2,
+  //     })
+  // })
+
+  // DESKTOP DEUXIÈME TEST
   mm.add('(min-width: 993px)', () => {
     const timeline = document.querySelector('#timeline-container')
     const section = document.querySelector('main')
 
-    gsap.set(timeline, { x: 80, opacity: 0, y: 0 })
+    // // hauteur de scroll de la section
+    // const getSectionScroll = () => section.scrollHeight - window.innerHeight
 
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: 'bottom bottom',
-          scrub: 1,
-        },
-      })
-      .to(timeline, {
-        x: 0,
-        opacity: 1,
-        ease: 'power2.out',
-        duration: 0.2,
-      })
-      .to(timeline, {
-        y: () => -(timeline.scrollHeight - window.innerHeight),
-        ease: 'none',
-        duration: 1,
-      })
-      .to(timeline, {
-        x: 0,
-        opacity: 0,
-        ease: 'power2.in',
-        duration: 0.2,
-      })
+    // // hauteur de scroll de la frise
+    // const getTimelineScroll = () => timeline.scrollHeight - window.innerHeight
+
+    // // sécurité : si la frise est plus petite → pas d’animation
+    // if (getTimelineScroll() <= 0) return
+
+    gsap.to(timeline, {
+      y: () => -(timeline.scrollHeight - window.innerHeight),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: true,
+        invalidateOnRefresh: true,
+      },
+    })
+
+    // optionnel : gérer l'opacité en dehors de <main>
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top top+=10%',
+      end: 'bottom bottom-=10%',
+      onEnter: () => gsap.set(timeline, { opacity: 1 }),
+      onLeave: () => gsap.set(timeline, { opacity: 0 }),
+      onEnterBack: () => gsap.set(timeline, { opacity: 1 }),
+      onLeaveBack: () => gsap.set(timeline, { opacity: 0 }),
+    })
   })
 
   // MOBILE
@@ -120,18 +158,34 @@ onMounted(() => {
 <style scoped>
 /* Frise */
 main {
+  display: flex;
   position: relative;
 }
 
-#timeline-container {
+/* FRISE PREMIER TEST */
+/* #timeline-container {
   position: fixed;
   top: 0;
   right: 0;
   z-index: 10;
   pointer-events: none;
-  overflow: hidden;
 }
 
+#timeline-container {
+  height: auto;
+} */
+
+/* FRISE DEUXIEME TEST */
+#timeline-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 230px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* FRISE MOBILE */
 #timeline-container-mobile {
   position: fixed;
   bottom: 0;
