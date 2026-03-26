@@ -1,5 +1,7 @@
 <script setup>
 import ButtonStart from './../components/ButtonStart.vue'
+import { defineEmits } from 'vue'
+const emit = defineEmits(['click-start'])
 </script>
 
 <template>
@@ -18,7 +20,7 @@ import ButtonStart from './../components/ButtonStart.vue'
     </div>
 
     <div id="button-start">
-      <ButtonStart></ButtonStart>
+      <ButtonStart @click-start="$emit('click-start')"></ButtonStart>
     </div>
 
     <div class="row">

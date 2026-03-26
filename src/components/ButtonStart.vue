@@ -1,8 +1,12 @@
-<script setup></script>
+<script setup>
+import { defineEmits } from 'vue'
+
+const emit = defineEmits(['click-start'])
+</script>
 
 <template>
   <div>
-    <a href="#intro-words" class="button-wrapper">
+    <a href="#intro-words" class="button-wrapper" @click.prevent="emit('click-start')">
       <div class="button-extern"></div>
       <div class="button-intern">
         <p>

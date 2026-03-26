@@ -4,12 +4,16 @@ import IntroWords from './../parts/IntroWords.vue'
 import IntroText from './../parts/IntroText.vue'
 import IntroScroll from './../parts/IntroScroll.vue'
 import IntroMovingBg from './../parts/IntroMovingBg.vue'
+
+function handleButtonClick() {
+  console.log('Click reçu dans IntroMovingBg')
+}
 </script>
 
 <template>
   <div id="burger-accueil" class="burger-orange">
     <div class="container">
-      <IntroStart></IntroStart>
+      <IntroStart @click-start="handleButtonClick"></IntroStart>
     </div>
 
     <div class="container">
@@ -36,5 +40,9 @@ import IntroMovingBg from './../parts/IntroMovingBg.vue'
     display: none;
     pointer-events: none;
   }
+}
+
+.burger-orange {
+  position: relative;
 }
 </style>

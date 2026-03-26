@@ -4,28 +4,14 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
-const heroImg = ref(null)
-const heroContainer = ref(null)
+const introContainer = ref(null)
+const bgContainerRef = ref(null)
 let ctx
 
 onMounted(() => {
-  const isMobile = window.innerWidth < 600
-
-  const values = isMobile
-    ? {
-        startX: '0',
-        midX: '0',
-        endX: '0',
-      }
-    : {
-        startX: '0',
-        midX: '-20%',
-        endX: '0',
-      }
   ctx = gsap.context(() => {
-    gsap.set(heroImg.value, {
-      x: values.startX,
-      y: values.startY,
+    gsap.to(bgContainerRef.value, {
+      x: '0%',
     })
   })
 })
@@ -34,7 +20,8 @@ onUnmounted(() => ctx.revert())
 </script>
 
 <template>
-  <div class="bg-container">
+  <div ref="introContainer" id="scroll-zone"></div>
+  <div ref="bgContainerRef" class="bg-container">
     <img class="bg-img" src="/bg-p1.svg" alt="" />
     <img class="bg-img-2" src="/bg-p2.svg" alt="" />
     <img class="bg-img-3" src="/bg-p3.svg" alt="" />
@@ -45,10 +32,17 @@ onUnmounted(() => ctx.revert())
 </template>
 
 <style scoped>
+#scroll-zone {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  pointer-events: none;
+}
+
 .bg-container {
   display: none;
   position: sticky;
-  overflow: hidden;
+  /* overflow: hidden; */
   inset: 0;
   z-index: 2;
   height: 100vh;
