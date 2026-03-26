@@ -13,6 +13,40 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// ACCUEIL BLOQUÉ
+let hasStarted = false
+let isLocking = false
+
+onMounted(() => {
+  // bloque scroll au début
+  document.body.style.overflow = 'hidden'
+
+  const intro = document.querySelector('#intro-start')
+  const introWords = document.querySelector('#intro-words')
+
+  window.addEventListener('scroll', () => {
+    if (!hasStarted || isLocking) return
+    if (!intro) return
+
+    // empêche de remonter dans la cover
+    if (window.scrollY < window.innerHeight) {
+      isLocking = true
+
+      introWords.scrollIntoView({ behavior: 'smooth' })
+
+      setTimeout(() => {
+        isLocking = false
+      }, 50)
+    }
+  })
+})
+
+function unlockScroll() {
+  hasStarted = true
+  document.body.style.overflow = 'auto'
+}
+
+// Frise
 onMounted(() => {
   const mm = gsap.matchMedia()
 
@@ -135,10 +169,10 @@ onMounted(() => {
   <BurgerMenu></BurgerMenu>
 
   <header>
-    <PartIntro></PartIntro>
+    <PartIntro @start="unlockScroll"></PartIntro>
   </header>
 
-  <main>
+  <main id="main">
     <div id="timeline-container-mobile">
       <TimelineMobile></TimelineMobile>
     </div>

@@ -1,8 +1,21 @@
-<script setup></script>
+<script setup>
+// ACCUEIL BLOQUÉ
+const emit = defineEmits(['start'])
+
+function startExperience() {
+  const main = document.querySelector('main')
+
+  emit('start') // 🔥 envoie vers IntroStart
+
+  main.scrollIntoView({
+    behavior: 'smooth',
+  })
+}
+</script>
 
 <template>
   <div>
-    <a href="#intro-words" class="button-wrapper">
+    <a href="#intro-words" class="button-wrapper" @click.prevent="startExperience">
       <div class="button-extern"></div>
       <div class="button-intern">
         <p>
