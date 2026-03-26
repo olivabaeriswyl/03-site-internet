@@ -1,17 +1,4 @@
-<script setup>
-// ACCUEIL BLOQUÉ
-const emit = defineEmits(['start'])
-
-function startExperience() {
-  const main = document.querySelector('main')
-
-  emit('start') // 🔥 envoie vers IntroStart
-
-  main.scrollIntoView({
-    behavior: 'smooth',
-  })
-}
-</script>
+<script setup></script>
 
 <template>
   <div>
