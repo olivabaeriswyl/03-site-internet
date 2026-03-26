@@ -9,14 +9,14 @@ const currentMessage = ref(messages[0])
 onMounted(() => {
   const tl = gsap.timeline({ repeat: -1 })
 
-  // ÉTAT INITIAL
+  // État initial
   gsap.set('#quote', { x: -100, opacity: 0 })
   gsap.set('#date', { y: -30, opacity: 0 })
   gsap.set('#name', { y: 30, opacity: 0 })
 
-  // 🔁 TIMELINE
+  // Timeline
   tl
-    // ENTRÉE
+    // Entrée
     .to('#quote', {
       x: 0,
       opacity: 1,
@@ -44,10 +44,10 @@ onMounted(() => {
       '-=0.4',
     )
 
-    // PAUSE
+    // Pause
     .to({}, { duration: 10 })
 
-    // SORTIE (fade uniquement pour quote)
+    // Sortie
     .to('#quote', {
       opacity: 0,
       duration: 0.4,
@@ -74,36 +74,31 @@ onMounted(() => {
       '-=0.3',
     )
 
-    // 🔴 CHANGEMENT DE TEXTE (au bon moment)
+    // Changement du texte
     .call(() => {
       currentIndex.value = (currentIndex.value + 1) % messages.length
       currentMessage.value = messages[currentIndex.value]
     })
 
-    // 🔁 RESET POSITION AVANT NOUVELLE ENTRÉE
+    // Position avant nouveau message
     .set('#quote', { x: -100 })
     .set('#date', { y: -30 })
     .set('#name', { y: 30 })
 })
-
-// onMounted(() => {
-//   setInterval(() => {
-//     currentIndex.value = (currentIndex.value + 1) % messages.length
-//     currentMessage.value = messages[currentIndex.value]
-//   }, 10000) // 10 secondes
-// })
 </script>
 
 <template>
   <div class="screen">
-    <h3>Message mis en avant</h3>
-    <div class="row">
-      <div class="col-12">
-        <div id="layout-message">
-          <div id="quote-block">
-            <p class="informations" id="date">{{ currentMessage.date }}</p>
-            <p id="quote">{{ currentMessage.message }}</p>
-            <p class="informations" id="name">{{ currentMessage.name }}</p>
+    <div>
+      <h3>Message mis en avant</h3>
+      <div class="row">
+        <div class="col-12">
+          <div id="layout-message">
+            <div id="quote-block">
+              <p class="informations" id="date">{{ currentMessage.date }}</p>
+              <p id="quote">{{ currentMessage.message }}</p>
+              <p class="informations" id="name">{{ currentMessage.name }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -112,6 +107,12 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Style texte informations  */
 .informations {
   font-family: arima, sans-serif;

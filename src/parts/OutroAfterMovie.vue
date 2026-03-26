@@ -2,18 +2,24 @@
 
 <template>
   <div class="screen">
-    <div class="row">
-      <div class="col-12 col-lg-2" id="layout-margin">
-        <h3>Retour en image</h3>
-      </div>
-      <div class="col-12 col-lg-8">
-        <div class="video"></div>
+    <div>
+      <div class="row">
+        <div class="col-12 col-lg-2" id="layout-margin">
+          <h3>Retour en image</h3>
+        </div>
+        <div class="col-12 col-lg-8">
+          <div class="video"></div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.screen {
+  padding-top: 6%;
+}
+
 /* Font */
 h3 {
   color: var(--color-white);
