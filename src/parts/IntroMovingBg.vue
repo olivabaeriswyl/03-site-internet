@@ -39,10 +39,14 @@ onUnmounted(() => ctx.revert())
     <img class="bg-img-2" src="/bg-p2.svg" alt="" />
     <img class="bg-img-3" src="/bg-p3.svg" alt="" />
   </div>
+  <div class="mobile-bg-container">
+    <img class="mobile-bg" src="/intro-mobile-bg.svg" alt="" />
+  </div>
 </template>
 
 <style scoped>
 .bg-container {
+  display: none;
   position: sticky;
   overflow: hidden;
   inset: 0;
@@ -54,12 +58,31 @@ onUnmounted(() => ctx.revert())
   pointer-events: none;
 }
 
+.mobile-bg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* overflow: hidden; */
+  z-index: 1;
+  width: 100%;
+  height: 400vh;
+}
+
+.mobile-bg {
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  position: absolute;
+}
+
 .bg-img,
 .bg-img-2,
 .bg-img-3 {
   position: absolute;
   left: 50%;
   min-width: 100vw;
+  display: none;
 }
 
 .bg-img {
@@ -83,15 +106,20 @@ onUnmounted(() => ctx.revert())
   }
 }
 
-/* @media (min-width: 600px) {
-  img {
-    scale: 500%;
+@media (min-width: 600px) {
+  .mobile-bg-container,
+  .mobile-bg {
+    display: none;
+  }
+
+  .bg-container {
+    display: block;
+  }
+
+  .bg-img,
+  .bg-img-2,
+  .bg-img-3 {
+    display: block;
   }
 }
-
-@media (min-width: 1400px) {
-  img {
-    width: 80vw;
-  }
-} */
 </style>
