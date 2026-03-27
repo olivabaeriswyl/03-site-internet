@@ -17,96 +17,26 @@ gsap.registerPlugin(ScrollTrigger)
 onMounted(() => {
   const mm = gsap.matchMedia()
 
-  // DESKTOP PREMIER TEST
-  // mm.add('(min-width: 993px)', () => {
-  //   const timeline = document.querySelector('#timeline-container')
-  //   const section = document.querySelector('main')
-
-  //   gsap.set(timeline, { x: 80, opacity: 0, y: 0 })
-
-  //   gsap
-  //     .timeline({
-  //       scrollTrigger: {
-  //         trigger: section,
-  //         start: 'top top',
-  //         end: 'bottom bottom',
-  //         scrub: 1,
-  //       },
-  //     })
-  //     .to(timeline, {
-  //       x: 0,
-  //       opacity: 1,
-  //       ease: 'power2.out',
-  //       duration: 0.2,
-  //     })
-  //     .to(timeline, {
-  //       y: () => -(timeline.scrollHeight - window.innerHeight),
-  //       ease: 'none',
-  //       duration: 1,
-  //     })
-  //     .to(timeline, {
-  //       x: 0,
-  //       opacity: 1,
-  //       ease: 'power2.in',
-  //       duration: 0.2,
-  //     })
-  // })
-
-  // DESKTOP DEUXIÈME TEST
-  // mm.add('(min-width: 993px)', () => {
-  //   const timeline = document.querySelector('#timeline-container')
-  //   const section = document.querySelector('main')
-
-  //   // // hauteur de scroll de la section
-  //   // const getSectionScroll = () => section.scrollHeight - window.innerHeight
-
-  //   // // hauteur de scroll de la frise
-  //   // const getTimelineScroll = () => timeline.scrollHeight - window.innerHeight
-
-  //   // // sécurité : si la frise est plus petite → pas d’animation
-  //   // if (getTimelineScroll() <= 0) return
-
-  //   gsap.to(timeline, {
-  //     y: () => -(timeline.scrollHeight - window.innerHeight),
-  //     ease: 'none',
-  //     scrollTrigger: {
-  //       trigger: section,
-  //       start: 'top top',
-  //       end: 'bottom bottom',
-  //       scrub: true,
-  //       invalidateOnRefresh: true,
-  //     },
-  //   })
-
-  //   // optionnel : gérer l'opacité en dehors de <main>
-  //   ScrollTrigger.create({
-  //     trigger: section,
-  //     start: 'top top+=10%',
-  //     end: 'bottom bottom-=10%',
-  //     onEnter: () => gsap.set(timeline, { opacity: 1 }),
-  //     onLeave: () => gsap.set(timeline, { opacity: 0 }),
-  //     onEnterBack: () => gsap.set(timeline, { opacity: 1 }),
-  //     onLeaveBack: () => gsap.set(timeline, { opacity: 0 }),
-  //   })
-  // })
-
   mm.add('(min-width: 993px)', () => {
     const timeline = document.querySelector('#timeline-content')
-    const section = document.querySelector('#main')
-    const endMarker = document.querySelector('#timeline-end')
 
-    if (!timeline || !section || !endMarker) return
+    if (!timeline) return
+
+    const getMoveY = () => {
+      const timelineHeight = timeline.scrollHeight
+      const viewportHeight = window.innerHeight
+
+      // 🔥 distance réelle à parcourir
+      return Math.max(timelineHeight - viewportHeight, 0)
+    }
 
     gsap.to(timeline, {
-      y: () =>
-        endMarker.getBoundingClientRect().top -
-        section.getBoundingClientRect().top -
-        (timeline.offsetHeight - section.offsetHeight),
+      y: () => -getMoveY(),
       ease: 'none',
       scrollTrigger: {
-        trigger: section,
+        trigger: '#main',
         start: 'top top',
-        end: () => `bottom ${window.innerHeight}`, // on arrête au bottom du viewport
+        end: '+=300%', // 🔥 3x viewport = 300vh
         scrub: true,
         invalidateOnRefresh: true,
         markers: false,
@@ -169,15 +99,13 @@ onMounted(() => {
     </div>
 
     <div id="timeline-container-desktop">
-      <div id="timeline-content">
+      <div id="timeline-position">
         <Timeline></Timeline>
       </div>
     </div>
 
     <PartStats></PartStats>
   </main>
-
-  <div id="timeline-end" style="height: 0; width: 0"></div>
 
   <footer>
     <PartOutro></PartOutro>
@@ -192,29 +120,6 @@ onMounted(() => {
 
   display: flex;
   flex-direction: row-reverse;
-}
-
-/* FRISE PREMIER TEST */
-/* #timeline-container {
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 10;
-  pointer-events: none;
-}
-
-#timeline-container {
-  height: auto;
-} */
-
-/* FRISE DEUXIEME TEST */
-#timeline-container {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 230px;
-  z-index: 10;
-  pointer-events: none;
 }
 
 /* FRISE MOBILE */
