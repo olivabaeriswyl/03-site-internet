@@ -11,12 +11,13 @@ import { onMounted } from 'vue'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 
+// Frise
 gsap.registerPlugin(ScrollTrigger)
 
-// Frise
 onMounted(() => {
   const mm = gsap.matchMedia()
 
+  // Frise desktop
   mm.add('(min-width: 993px)', () => {
     const timeline = document.querySelector('#timeline-content')
 
@@ -26,7 +27,6 @@ onMounted(() => {
       const timelineHeight = timeline.scrollHeight
       const viewportHeight = window.innerHeight
 
-      // 🔥 distance réelle à parcourir
       return Math.max(timelineHeight - viewportHeight, 0)
     }
 
@@ -36,7 +36,7 @@ onMounted(() => {
       scrollTrigger: {
         trigger: '#main',
         start: 'top top',
-        end: '+=300%', // 🔥 3x viewport = 300vh
+        end: '+=300%',
         scrub: true,
         invalidateOnRefresh: true,
         markers: false,
@@ -44,7 +44,7 @@ onMounted(() => {
     })
   })
 
-  // FRISE MOBILE
+  // Frise mobile
   mm.add('(max-width: 992px)', () => {
     const timeline = document.querySelector('#timeline-container-mobile')
     const section = document.querySelector('main')
@@ -87,33 +87,41 @@ onMounted(() => {
 </script>
 
 <template>
-  <BurgerMenu></BurgerMenu>
+  <div id="website">
+    <BurgerMenu></BurgerMenu>
 
-  <header>
-    <PartIntro @start="unlockScroll"></PartIntro>
-  </header>
+    <header>
+      <PartIntro></PartIntro>
+    </header>
 
-  <main id="main">
-    <div id="timeline-container-mobile">
-      <TimelineMobile></TimelineMobile>
-    </div>
-
-    <div id="timeline-container-desktop">
-      <div id="timeline-position">
-        <Timeline></Timeline>
+    <main id="main">
+      <div id="timeline-container-mobile">
+        <TimelineMobile></TimelineMobile>
       </div>
-    </div>
 
-    <PartStats></PartStats>
-  </main>
+      <div id="timeline-container-desktop">
+        <div id="timeline-content">
+          <Timeline></Timeline>
+        </div>
+      </div>
 
-  <footer>
-    <PartOutro></PartOutro>
-  </footer>
+      <div id="section-content">
+        <PartStats></PartStats>
+      </div>
+    </main>
+
+    <footer>
+      <PartOutro></PartOutro>
+    </footer>
+  </div>
 </template>
 
 <style scoped>
-/* Frise */
+/* #website {
+  overflow: hidden;
+} */
+
+/* Contenu entier et position frise */
 #main {
   position: relative;
   width: 100%;
@@ -122,7 +130,7 @@ onMounted(() => {
   flex-direction: row-reverse;
 }
 
-/* FRISE MOBILE */
+/* Frise mobile */
 #timeline-container-mobile {
   position: fixed;
   bottom: 0;
@@ -135,21 +143,8 @@ onMounted(() => {
   overflow: hidden;
 }
 
-@media (max-width: 992px) {
-  #timeline-container-mobile {
-    display: block;
-    opacity: 1;
-  }
-
-  #timeline-container {
-    display: none;
-    opacity: 0;
-  }
-}
-
-/* Timeline v3 */
+/* Frise desktop */
 #timeline-container-desktop {
-  background: red;
   width: 230px;
   height: 100vh;
   position: sticky;
@@ -157,10 +152,38 @@ onMounted(() => {
   z-index: 10;
   pointer-events: none;
   overflow: hidden;
+  flex-shrink: 0;
+
+  background: red;
+
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
 }
 
 #timeline-content {
   width: 100%;
   height: auto;
+}
+
+#main #section-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  #main {
+    display: block;
+  }
+
+  #timeline-container-mobile {
+    display: block;
+    opacity: 1;
+  }
+
+  #timeline-container-desktop {
+    display: none;
+    opacity: 0;
+  }
 }
 </style>

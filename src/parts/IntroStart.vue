@@ -1,8 +1,5 @@
 <script setup>
 import ButtonStart from './../components/ButtonStart.vue'
-
-// ACCUEIL BLOQUÉ
-defineEmits(['start'])
 </script>
 
 <template>
@@ -22,7 +19,7 @@ defineEmits(['start'])
       </div>
 
       <div id="button-start">
-        <ButtonStart @start="$emit('start')"></ButtonStart>
+        <ButtonStart></ButtonStart>
       </div>
 
       <div class="row">

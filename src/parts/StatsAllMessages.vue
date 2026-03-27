@@ -4,19 +4,21 @@ import gsap from 'gsap'
 import messages from '@/data/messages-sapin-porte-paroles.json'
 
 // Messages et filtres
-// // catégorie par défaut
+// catégorie par défaut
 const activeCategory = ref('category-support')
 
-// // filtrage
+// filtrage
 const filteredMessages = computed(() => {
   return messages.filter((m) => m.category === activeCategory.value)
 })
 
-// // construction du texte et espacement
+// texte et espacement
 const streams = ref([])
 
 function buildMessageStream(messages) {
-  const base = messages.map((m) => `\u00A0\u00A0\u00A0${m.message}\u00A0\u00A0\u00A0`).join(' ✦ ')
+  const base = messages
+    .map((m) => `\u00A0\u00A0\u00A0\u00A0${m.message}\u00A0\u00A0\u00A0\u00A0`)
+    .join('  ')
   return base + ' ✦ ' + base
 }
 
@@ -471,6 +473,12 @@ text {
   #text-bottom-right {
     right: 200px;
     bottom: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .screen {
+    padding-left: 60px;
   }
 }
 

@@ -14,8 +14,7 @@
               violences durant les <em>« Orange Day »</em>.
             </p>
             <p>
-              Des sapins ont étés installés dans plusieurs endroits en Suisse romande, notamment à
-              la
+              Des sapins ont été installés dans plusieurs endroits en Suisse romande, notamment à la
               <em>gare de Fribourg</em>, pour recueillir des messages d'espoir et briser le silence.
             </p>
           </div>
