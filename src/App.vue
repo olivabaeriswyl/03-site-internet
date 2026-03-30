@@ -44,53 +44,6 @@ onMounted(() => {
     })
   })
 
-  // Frise mobile
-  // mm.add('(max-width: 992px)', () => {
-  //   const timeline = document.querySelector('#timeline-container-mobile')
-  //   const section = document.querySelector('#main')
-
-  //   if (!timeline || !section) return
-
-  //   const getScrollDistance = () => {
-  //     return timeline.scrollWidth - window.innerWidth
-  //   }
-
-  //   const getSectionScroll = () => {
-  //     return section.offsetHeight - window.innerHeight
-  //   }
-
-  //   if (getScrollDistance() <= 0) return
-
-  //   ScrollTrigger.create({
-  //     trigger: section,
-  //     start: 'top top',
-  //     end: 'bottom bottom',
-  //     onEnter: () => {
-  //       gsap.to(timeline, { y: 0, opacity: 1, duration: 0.5 })
-  //     },
-  //     onLeave: () => {
-  //       gsap.to(timeline, { y: 50, opacity: 0, duration: 0.5 })
-  //     },
-  //     onEnterBack: () => {
-  //       gsap.to(timeline, { y: 0, opacity: 1, duration: 0.5 })
-  //     },
-  //     onLeaveBack: () => {
-  //       gsap.to(timeline, { y: 50, opacity: 0, duration: 0.5 })
-  //     },
-  //   })
-
-  //   gsap.to(timeline, {
-  //     x: () => -getScrollDistance(),
-  //     ease: 'none',
-  //     scrollTrigger: {
-  //       trigger: section,
-  //       start: 'top top',
-  //       end: () => `+=${getSectionScroll()}`,
-  //       scrub: true,
-  //       invalidateOnRefresh: true,
-  //     },
-  //   })
-  // })
   mm.add('(max-width: 992px)', () => {
     const timeline = document.querySelector('#timeline-content-mobile')
     const section = document.querySelector('#main')
@@ -120,6 +73,64 @@ onMounted(() => {
     })
   })
 })
+
+// Animmation apparition texte
+onMounted(() => {
+  const items = document.querySelectorAll('.timeline-item')
+
+  items.forEach((item) => {
+    const date = item.querySelector('.date')
+    const location = item.querySelector('.location')
+
+    if (!date || !location) return
+
+    gsap.to([date, location], {
+      opacity: 1,
+      y: 0,
+      duration: 0.3,
+      ease: 'power2.out',
+      paused: true,
+    })
+
+    const tl = gsap.timeline({ paused: true })
+
+    tl.to([date, location], {
+      opacity: 1,
+      y: 0,
+      duration: 0.3,
+      ease: 'power2.out',
+      stagger: 0.05,
+    })
+
+    // ScrollTrigger.create({
+    //   trigger: item,
+    //   start: 'center 80%', // 🔥 zone d'apparition
+    //   end: 'center 40%', // 🔥 zone centrale
+    //   onEnter: () => tl.play(),
+    //   onEnterBack: () => tl.play(),
+    //   onLeave: () => tl.reverse(),
+    //   onLeaveBack: () => tl.reverse(),
+    // })
+    ScrollTrigger.addEventListener('refresh', () => {
+      ScrollTrigger.update()
+    })
+
+    ScrollTrigger.create({
+      trigger: item,
+      start: 'top 60%',
+      end: 'bottom 40%',
+      invalidateOnRefresh: true,
+      markers: false,
+
+      onEnter: () => tl.play(),
+      onEnterBack: () => tl.play(),
+      onLeave: () => tl.reverse(),
+      onLeaveBack: () => tl.reverse(),
+    })
+
+    ScrollTrigger.refresh()
+  })
+})
 </script>
 
 <template>
@@ -131,6 +142,10 @@ onMounted(() => {
     </header>
 
     <main id="main">
+      <div id="timeline-blur-wrapper">
+        <div id="timeline-blur"></div>
+      </div>
+
       <div id="timeline-container-mobile">
         <div id="timeline-content-mobile">
           <TimelineMobile></TimelineMobile>
@@ -168,24 +183,28 @@ onMounted(() => {
   flex-direction: row-reverse;
 }
 
-/* Frise mobile */
-/* #timeline-container-mobile {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  pointer-events: none;
-
-  display: none;
-  opacity: 0;
-  overflow: hidden;
+/* Timeline fond flou  */
+#timeline-blur-wrapper {
+  position: absolute;
+  height: 100%;
 }
 
-#timeline-content-mobile {
-  width: max-content;
-} */
+#timeline-blur {
+  position: sticky;
+  top: 0;
+  right: 0;
 
-/* Frise mobile v2 */
+  width: 230px;
+  height: 100vh;
+
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+
+  z-index: 5;
+}
+
+/* Frise mobile */
 #timeline-container-mobile {
   position: sticky;
   bottom: 0;
@@ -216,7 +235,7 @@ onMounted(() => {
   overflow: hidden;
   flex-shrink: 0;
 
-  background: var(--color-white);
+  background: none;
 
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
   mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
@@ -244,6 +263,11 @@ onMounted(() => {
   }
 
   #timeline-container-desktop {
+    display: none;
+    opacity: 0;
+  }
+
+  #timeline-blur-wrapper {
     display: none;
     opacity: 0;
   }

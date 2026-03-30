@@ -10,11 +10,11 @@ defineProps({
   <div class="timeline-item">
     <div id="timeline-wrapper">
       <div id="layout-line">
-        <p>{{ date }}</p>
+        <p class="date">{{ date }}</p>
         <div id="big-line"></div>
       </div>
-      <p>{{ location }}</p>
-      <p id="strong-text">
+      <p class="location">{{ location }}</p>
+      <p class="age">
         <strong>{{ age }}</strong>
       </p>
     </div>
@@ -41,7 +41,7 @@ strong {
   line-height: 16px;
 }
 
-#strong-text {
+.age {
   margin-top: 4px;
 }
 
@@ -57,5 +57,12 @@ strong {
   min-height: 1px;
   background-color: var(--color-orange);
   margin-left: 8px;
+}
+
+/* Animation apparition */
+.date,
+.location {
+  opacity: 0;
+  transform: translateY(5px);
 }
 </style>
