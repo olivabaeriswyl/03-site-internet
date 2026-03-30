@@ -75,60 +75,133 @@ onMounted(() => {
 })
 
 // Animmation apparition texte
+// onMounted(() => {
+//   const items = document.querySelectorAll('.timeline-item')
+
+//   function updateItems() {
+//     items.forEach((item) => {
+//       const rect = item.getBoundingClientRect()
+//       const viewportCenter = window.innerHeight / 2
+
+//       const date = item.querySelector('.date')
+//       const location = item.querySelector('.location')
+
+//       if (!date || !location) return
+
+//       // 🔥 distance au centre
+//       const itemCenter = rect.top + rect.height / 2
+//       const distance = Math.abs(viewportCenter - itemCenter)
+
+//       // 🔥 zone active (à ajuster)
+//       const threshold = 200
+
+//       if (distance < threshold) {
+//         // visible → on montre
+//         gsap.to([date, location], {
+//           opacity: 1,
+//           y: 0,
+//           duration: 0.3,
+//           overwrite: true,
+//         })
+//       } else {
+//         // hors centre → on cache
+//         gsap.to([date, location], {
+//           opacity: 0,
+//           y: 10,
+//           duration: 0.3,
+//           overwrite: true,
+//         })
+//       }
+//     })
+//   }
+
+//   // 🔥 sync avec GSAP scroll
+//   gsap.ticker.add(updateItems)
+
+//   // cleanup (important en Vue)
+//   onBeforeUnmount(() => {
+//     gsap.ticker.remove(updateItems)
+//   })
+// })
+
 onMounted(() => {
   const items = document.querySelectorAll('.timeline-item')
 
-  items.forEach((item) => {
-    const date = item.querySelector('.date')
-    const location = item.querySelector('.location')
+  function updateItems() {
+    items.forEach((item) => {
+      const rect = item.getBoundingClientRect()
+      const viewportCenter = window.innerHeight / 2
 
-    if (!date || !location) return
+      const date = item.querySelector('.date')
+      const location = item.querySelector('.location')
+      const age = item.querySelector('.age')
+      const line = item.querySelector('.big-line')
 
-    gsap.to([date, location], {
-      opacity: 1,
-      y: 0,
-      duration: 0.3,
-      ease: 'power2.out',
-      paused: true,
+      if (!date || !location || !age || !line) return
+
+      const itemCenter = rect.top + rect.height / 2
+
+      const start = window.innerHeight * 0.35
+      const end = window.innerHeight * 0.65
+
+      const isActive = itemCenter > start && itemCenter < end
+
+      // 🔥 éviter de relancer l’anim en boucle
+      if (item._active === isActive) return
+      item._active = isActive
+
+      if (isActive) {
+        // 🟢 ÉTAT ACTIF
+        gsap.to([date, location], {
+          opacity: 1,
+          y: 0,
+          duration: 0.3,
+          ease: 'power2.out',
+        })
+
+        gsap.to(age, {
+          y: 0,
+          duration: 0.3,
+          ease: 'power2.out',
+        })
+
+        gsap.to(line, {
+          scaleX: 1,
+          x: 0,
+          duration: 0.3,
+          ease: 'power2.out',
+        })
+      } else {
+        // 🔴 ÉTAT COMPACT
+        gsap.to([date, location], {
+          opacity: 0,
+          y: 10,
+          duration: 0.3,
+          ease: 'power2.in',
+        })
+
+        gsap.to(age, {
+          y: -10,
+          duration: 0.3,
+          ease: 'power2.in',
+        })
+
+        gsap.to(line, {
+          scaleX: 0.3,
+          x: 130, // 🔥 ton besoin ici
+          duration: 0.3,
+          ease: 'power2.in',
+        })
+      }
     })
+  }
 
-    const tl = gsap.timeline({ paused: true })
+  // 🔥 sync avec GSAP scroll
+  gsap.ticker.add(updateItems)
 
-    tl.to([date, location], {
-      opacity: 1,
-      y: 0,
-      duration: 0.3,
-      ease: 'power2.out',
-      stagger: 0.05,
-    })
-
-    // ScrollTrigger.create({
-    //   trigger: item,
-    //   start: 'center 80%', // 🔥 zone d'apparition
-    //   end: 'center 40%', // 🔥 zone centrale
-    //   onEnter: () => tl.play(),
-    //   onEnterBack: () => tl.play(),
-    //   onLeave: () => tl.reverse(),
-    //   onLeaveBack: () => tl.reverse(),
-    // })
-    ScrollTrigger.addEventListener('refresh', () => {
-      ScrollTrigger.update()
-    })
-
-    ScrollTrigger.create({
-      trigger: item,
-      start: 'top 60%',
-      end: 'bottom 40%',
-      invalidateOnRefresh: true,
-      markers: false,
-
-      onEnter: () => tl.play(),
-      onEnterBack: () => tl.play(),
-      onLeave: () => tl.reverse(),
-      onLeaveBack: () => tl.reverse(),
-    })
-
-    ScrollTrigger.refresh()
+  // cleanup (important en Vue)
+  onBeforeUnmount(() => {
+    gsap.ticker.remove(updateItems)
   })
 })
 </script>
