@@ -11,6 +11,8 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const gsapContainers = ref([])
+
 // timing values
 const skipWordsDelay = 2000
 const skipTextDelay = 2000
@@ -52,6 +54,26 @@ function HandleStart() {
 onMounted(() => {
   // bloque scroll au début
   // window.addEventListener('wheel', (e) => e.preventDefault(), { passive: false })
+
+  gsapContainers.value = document.querySelectorAll('.gsap-container')
+
+  gsapContainers.value.forEach((container) => {
+    gsap.set(container, {
+      opacity: 0,
+    })
+
+    gsap.to(container, {
+      opacity: 1,
+      delay: 0.5,
+      duration: 1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: container,
+        start: 'top 80%',
+        end: 'top 30%',
+      },
+    })
+  })
 })
 </script>
 
@@ -64,14 +86,14 @@ onMounted(() => {
     </div>
 
     <div class="container">
-      <IntroWords></IntroWords>
+      <IntroWords :state="state"></IntroWords>
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid gsap-container">
       <IntroText></IntroText>
     </div>
 
-    <div class="container">
+    <div class="container gsap-container">
       <div id="desktop-version">
         <IntroScroll></IntroScroll>
       </div>
