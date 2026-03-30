@@ -7,6 +7,8 @@ gsap.registerPlugin(ScrollTrigger)
 const introContainer = ref(null)
 const bgContainerRef = ref(null)
 let ctx = ref(null)
+const bgImg = ref(null)
+let imageWidth
 
 const props = defineProps({
   state: Number,
@@ -14,13 +16,29 @@ const props = defineProps({
 
 const animate = (newState, transition) => {
   gsap.to(bgContainerRef.value, {
-    x: newState === 1 ? '0%' : newState === 2 ? '-100%' : newState === 3 ? '-200%' : '-200%',
+    x:
+      newState === 1
+        ? 0
+        : newState === 2
+          ? -imageWidth
+          : newState === 3
+            ? -imageWidth * 2
+            : -imageWidth * 2,
     duration: transition ? 0.5 : 0,
   })
 }
 
 onMounted(() => {
-  animate(props.state, false)
+  bgImg.value.onload = () => {
+    const rect = bgImg.value.getBoundingClientRect()
+    imageWidth = rect.width
+    console.log('imageWidth', imageWidth)
+    animate(props.state, false)
+  }
+  // Si déjà cachée
+  if (bgImg.value.complete) {
+    bgImg.value.onload()
+  }
 })
 
 watch(
@@ -36,7 +54,7 @@ onUnmounted(() => ctx.value.revert())
 <template>
   <div ref="introContainer" id="scroll-zone">
     <div ref="bgContainerRef" class="bg-container">
-      <img class="bg-img" src="/bg-p1.svg" alt="" />
+      <img ref="bgImg" class="bg-img" src="/bg-p1.svg" alt="" />
       <img class="bg-img-2" src="/bg-p2.svg" alt="" />
       <img class="bg-img-3" src="/bg-p3.svg" alt="" />
     </div>
