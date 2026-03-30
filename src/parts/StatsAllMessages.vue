@@ -540,6 +540,10 @@ text {
 }
 
 @media (max-width: 768px) {
+  .screen {
+    min-height: auto;
+  }
+
   #filters-layout {
     position: relative;
   }

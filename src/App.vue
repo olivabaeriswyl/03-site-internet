@@ -45,41 +45,77 @@ onMounted(() => {
   })
 
   // Frise mobile
+  // mm.add('(max-width: 992px)', () => {
+  //   const timeline = document.querySelector('#timeline-container-mobile')
+  //   const section = document.querySelector('#main')
+
+  //   if (!timeline || !section) return
+
+  //   const getScrollDistance = () => {
+  //     return timeline.scrollWidth - window.innerWidth
+  //   }
+
+  //   const getSectionScroll = () => {
+  //     return section.offsetHeight - window.innerHeight
+  //   }
+
+  //   if (getScrollDistance() <= 0) return
+
+  //   ScrollTrigger.create({
+  //     trigger: section,
+  //     start: 'top top',
+  //     end: 'bottom bottom',
+  //     onEnter: () => {
+  //       gsap.to(timeline, { y: 0, opacity: 1, duration: 0.5 })
+  //     },
+  //     onLeave: () => {
+  //       gsap.to(timeline, { y: 50, opacity: 0, duration: 0.5 })
+  //     },
+  //     onEnterBack: () => {
+  //       gsap.to(timeline, { y: 0, opacity: 1, duration: 0.5 })
+  //     },
+  //     onLeaveBack: () => {
+  //       gsap.to(timeline, { y: 50, opacity: 0, duration: 0.5 })
+  //     },
+  //   })
+
+  //   gsap.to(timeline, {
+  //     x: () => -getScrollDistance(),
+  //     ease: 'none',
+  //     scrollTrigger: {
+  //       trigger: section,
+  //       start: 'top top',
+  //       end: () => `+=${getSectionScroll()}`,
+  //       scrub: true,
+  //       invalidateOnRefresh: true,
+  //     },
+  //   })
+  // })
   mm.add('(max-width: 992px)', () => {
-    const timeline = document.querySelector('#timeline-container-mobile')
-    const section = document.querySelector('main')
+    const timeline = document.querySelector('#timeline-content-mobile')
+    const section = document.querySelector('#main')
 
-    gsap.set(timeline, { y: 50, opacity: 0, x: 0 })
+    if (!timeline || !section) return
 
-    ScrollTrigger.create({
-      trigger: section,
-      start: 'top bottom',
-      end: 'bottom bottom',
-      onEnter: () => {
-        gsap.to(timeline, { y: 0, opacity: 1, duration: 0.5 })
-      },
-      onLeave: () => {
-        gsap.to(timeline, { y: 50, opacity: 0, duration: 0.5 })
-      },
-      onEnterBack: () => {
-        gsap.to(timeline, { y: 0, opacity: 1, duration: 0.5 })
-      },
-      onLeaveBack: () => {
-        gsap.to(timeline, { y: 50, opacity: 0, duration: 0.5 })
-      },
-    })
+    const getMoveX = () => {
+      return timeline.scrollWidth - window.innerWidth
+    }
 
-    const children = Array.from(timeline.children)
+    const getScroll = () => {
+      return section.offsetHeight - window.innerHeight
+    }
 
-    gsap.to(children, {
-      x: () => -(timeline.scrollWidth - window.innerWidth),
+    if (getMoveX() <= 0) return
+
+    gsap.to(timeline, {
+      x: () => -getMoveX(),
       ease: 'none',
-      stagger: 0.1,
       scrollTrigger: {
         trigger: section,
-        start: 'top bottom',
-        end: 'bottom top',
+        start: 'top top',
+        end: () => `+=${getScroll()}`,
         scrub: true,
+        invalidateOnRefresh: true,
       },
     })
   })
@@ -96,7 +132,9 @@ onMounted(() => {
 
     <main id="main">
       <div id="timeline-container-mobile">
-        <TimelineMobile></TimelineMobile>
+        <div id="timeline-content-mobile">
+          <TimelineMobile></TimelineMobile>
+        </div>
       </div>
 
       <div id="timeline-container-desktop">
@@ -131,7 +169,7 @@ onMounted(() => {
 }
 
 /* Frise mobile */
-#timeline-container-mobile {
+/* #timeline-container-mobile {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -141,6 +179,30 @@ onMounted(() => {
   display: none;
   opacity: 0;
   overflow: hidden;
+}
+
+#timeline-content-mobile {
+  width: max-content;
+} */
+
+/* Frise mobile v2 */
+#timeline-container-mobile {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+  pointer-events: none;
+
+  width: 100%;
+  height: auto;
+
+  display: none;
+  opacity: 0;
+  overflow: hidden;
+}
+
+#timeline-content-mobile {
+  width: max-content;
 }
 
 /* Frise desktop */
@@ -154,7 +216,7 @@ onMounted(() => {
   overflow: hidden;
   flex-shrink: 0;
 
-  background: red;
+  background: var(--color-white);
 
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
   mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
@@ -173,7 +235,7 @@ onMounted(() => {
 /* Responsive */
 @media (max-width: 992px) {
   #main {
-    display: block;
+    flex-direction: column-reverse;
   }
 
   #timeline-container-mobile {

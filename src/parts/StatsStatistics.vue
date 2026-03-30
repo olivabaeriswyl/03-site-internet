@@ -57,10 +57,6 @@
   align-items: baseline;
 }
 
-#sentence-number-messages {
-  width: 210px;
-}
-
 /* Icones */
 em {
   position: relative;
@@ -125,6 +121,10 @@ img {
 @media (min-width: 992px) {
   .screen {
     padding-left: 70px;
+  }
+
+  #sentence-number-messages {
+    width: 210px;
   }
 }
 

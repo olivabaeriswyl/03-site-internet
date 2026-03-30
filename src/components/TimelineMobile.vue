@@ -234,7 +234,6 @@ import TimelineMobileMonth from './TimelineMobileMonth.vue'
   color: var(--color-orange);
 
   align-self: flex-start;
-  margin-left: 240px;
 }
 
 /* Style texte final */
