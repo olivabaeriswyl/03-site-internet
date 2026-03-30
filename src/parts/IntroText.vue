@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div id="intro-text">
+  <div class="screen" id="intro-text">
     <!-- <div> -->
     <div class="row">
       <div
@@ -73,7 +73,7 @@ img {
 
   #intro-text {
     padding-top: 50vh;
-    height: 200vh;
+    height: 200vh !important;
     padding-bottom: 30vh;
   }
 

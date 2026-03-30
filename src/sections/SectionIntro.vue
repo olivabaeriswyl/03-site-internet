@@ -5,37 +5,43 @@ import IntroText from './../parts/IntroText.vue'
 import IntroScroll from './../parts/IntroScroll.vue'
 import IntroMovingBg from './../parts/IntroMovingBg.vue'
 
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
 // timing values
-const skipWordsDelay = 3000
-const skipTextDelay = 5000
+const skipWordsDelay = 2000
+const skipTextDelay = 2000
 const tutorialDelay = 2000
+
+// reactive state
+let state = ref(1)
 
 function HandleStart() {
   window.scrollTo({
     top: window.innerHeight,
     behavior: 'smooth',
   })
+  state.value = 2
 
   setTimeout(() => {
-    // hasStarted = true
     window.scrollTo({
       top: window.innerHeight * 2,
       behavior: 'smooth',
     })
+
+    state.value = 3
   }, skipWordsDelay)
 
   setTimeout(() => {
-    // hasStarted = true
     window.scrollTo({
       top: window.innerHeight * 3,
       behavior: 'smooth',
     })
+
+    state.value = 4
 
     setTimeout(() => {
       window.addEventListener('wheel', (e) => e, { passive: false })
@@ -51,7 +57,7 @@ onMounted(() => {
 
 <template>
   <div id="burger-accueil" class="burger-orange">
-    <IntroMovingBg></IntroMovingBg>
+    <IntroMovingBg :state="state"></IntroMovingBg>
 
     <div class="container">
       <IntroStart @start="HandleStart"></IntroStart>

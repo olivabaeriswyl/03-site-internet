@@ -3,7 +3,7 @@ import ButtonScroll from './../components/ButtonScroll.vue'
 </script>
 
 <template>
-  <div class="screen">
+  <div class="screen" id="intro-scroll">
     <div class="row">
       <div class="col-12">
         <div id="layout-button-scroll">

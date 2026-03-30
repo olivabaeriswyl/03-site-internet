@@ -1,22 +1,36 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const introContainer = ref(null)
 const bgContainerRef = ref(null)
-let ctx
+let ctx = ref(null)
 
-onMounted(() => {
-  ctx = gsap.context(() => {
-    gsap.to(bgContainerRef.value, {
-      x: '0%',
-    })
-  })
+const props = defineProps({
+  state: Number,
 })
 
-onUnmounted(() => ctx.revert())
+const animate = (newState, transition) => {
+  gsap.to(bgContainerRef.value, {
+    x: newState === 1 ? '0%' : newState === 2 ? '-100%' : newState === 3 ? '-200%' : '-200%',
+    duration: transition ? 0.5 : 0,
+  })
+}
+
+onMounted(() => {
+  animate(props.state, false)
+})
+
+watch(
+  () => props.state,
+  (newState) => {
+    animate(newState, true)
+  },
+)
+
+onUnmounted(() => ctx.value.revert())
 </script>
 
 <template>
@@ -36,17 +50,16 @@ onUnmounted(() => ctx.revert())
 #scroll-zone {
   position: absolute;
   inset: 0;
-  top: 0;
   height: 100%;
   pointer-events: none;
-  overflow: clip;
+  /* overflow: clip; */
 }
 
 .bg-container {
   display: none;
   position: sticky;
-  /* overflow: hidden; */
-  inset: 0;
+  top: 0;
+  bottom: 0;
   z-index: 2;
   height: 100vh;
   display: flex;
