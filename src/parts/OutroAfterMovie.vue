@@ -5,7 +5,7 @@
     <div class="row-container">
       <div class="video-container">
         <h3>Retour en image</h3>
-        <video src="/zonta_aftermovie-web.mp4" controls></video>
+        <video src="/public/Zonta-aftermovie-web.mp4" controls></video>
       </div>
     </div>
   </div>
