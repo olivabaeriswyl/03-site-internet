@@ -216,10 +216,10 @@ import TimelineMonth from './TimelineMonth.vue'
 
 <style scoped>
 #timeline-wrapper {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.617);
 
   backdrop-filter: blur(105px);
-  -webkit-backdrop-filter: blur(45px);
+  -webkit-backdrop-filter: blur(105px);
 
   width: 230px;
   padding-top: 10px;
