@@ -18,7 +18,7 @@ const skipWordsDelay = 2000
 const skipTextDelay = 2000
 const tutorialDelay = 2000
 
-const preventScroll = (e) => e.preventDefault()
+const isMobile = window.innerWidth <= 576
 
 // reactive state
 let state = ref(1)
@@ -63,6 +63,12 @@ function HandleStart() {
     })
 
     state.value = 4
+
+    if (isMobile) {
+      setTimeout(() => {
+        HandleJumpToStats()
+      }, 2000)
+    }
 
     setTimeout(() => {}, tutorialDelay)
   }, skipTextDelay + skipWordsDelay)
