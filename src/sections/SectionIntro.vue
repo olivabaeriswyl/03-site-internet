@@ -24,6 +24,7 @@ const isMobile = window.innerWidth <= 576
 let state = ref(1)
 const introDiv = ref(null)
 const html = document.documentElement
+const isDev = ref(true)
 
 function HandleJumpToStats() {
   document.getElementById('burger-recapitulatif').scrollIntoView({ behavior: 'smooth' })
@@ -76,6 +77,10 @@ function HandleStart() {
 
 onMounted(() => {
   html.style.overflowY = 'hidden'
+
+  if (isDev.value) {
+    html.style.overflowY = 'auto'
+  }
 
   gsapContainers.value = document.querySelectorAll('.gsap-container')
 

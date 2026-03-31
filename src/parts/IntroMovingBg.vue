@@ -62,7 +62,7 @@ onUnmounted(() => ctx.value.revert())
     <div ref="bgContainerRef" class="bg-container">
       <img class="bg-img" src="/bg-p1.svg" alt="" />
       <img class="bg-img-2" src="/bg-p2.svg" alt="" />
-      <img ref="bgImgLast" class="bg-img-3" src="/bg-p3.svg" alt="" />
+      <img ref="bgImgLast" class="bg-img-3" src="/bg-p3-v2.svg" alt="" />
     </div>
   </div>
   <div class="mobile-bg-container">
