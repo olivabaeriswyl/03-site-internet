@@ -1,8 +1,64 @@
-<script setup></script>
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
+
+const section = ref(null)
+let ctx
+
+onMounted(() => {
+  ctx = gsap.context(() => {
+    const together = section.value.querySelector('#layout-sentence-top')
+    const violence = section.value.querySelector('#sentence-violence')
+    const believe = section.value.querySelector('#sentence-believe')
+    const report = section.value.querySelector('#sentence-report')
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section.value,
+        start: 'center 80%',
+        toggleActions: 'play reverse play reverse',
+      },
+    })
+
+    tl.from(together, {
+      opacity: 0,
+      y: 40,
+      duration: 0.6,
+      ease: 'power2.out',
+    })
+
+    tl.from(violence, {
+      opacity: 0,
+      y: 40,
+      duration: 0.6,
+      ease: 'power2.out',
+    })
+
+    tl.from(believe, {
+      opacity: 0,
+      y: 40,
+      duration: 0.6,
+      ease: 'power2.out',
+    })
+
+    tl.from(report, {
+      opacity: 0,
+      y: 40,
+      duration: 0.6,
+      ease: 'power2.out',
+    })
+  })
+})
+
+onBeforeUnmount(() => ctx?.revert())
+</script>
 
 <template>
   <div class="screen">
-    <div>
+    <div ref="section">
       <h3>Messages les plus récurrents</h3>
       <div class="row">
         <div class="col-12">
