@@ -4,7 +4,7 @@
   <div class="screen">
     <div>
       <div class="row">
-        <div class="col-12 col-lg-4 order-2 order-lg-1" id="layout-img">
+        <div class="col-12 col-lg-4 order-2 order-lg-1" id="outro-media-layout-img">
           <img
             src="./../../img-side-installation.png"
             alt="25 novembre, journée internationale de lutte pour l'élimination de la violence à l'égard des femmes, suivi de la quinzaine d'activisme sur le même sujet."
@@ -25,7 +25,7 @@
                 </p>
               </a>
             </div>
-            <div class="col-8 offset-4">
+            <div class="col-12 col-sm-8 offset-sm-4">
               <a
                 href="https://frapp.ch/fr/articles/stories/sapin-porte-parole-violences-contre-les-femmes-fribourg"
                 target="_blank"
@@ -70,7 +70,7 @@
 
 /* Font */
 h2 {
-  margin-bottom: 30px;
+  margin: 0 0 30px;
 }
 
 a {
@@ -81,6 +81,7 @@ a {
 
 p {
   transition: all 0.4s ease;
+  margin-bottom: 30px;
 }
 
 a:hover p {
@@ -94,23 +95,31 @@ img {
   max-width: 392px;
 }
 
-#layout-img {
+#outro-media-layout-img {
   padding-left: 0;
 }
 
 @media (max-width: 992px) {
-  #layout-img {
+  #outro-media-layout-img {
     padding: 12px 0;
   }
 
   img {
     margin-top: 50px;
   }
+
+  h2 {
+    margin: 40px 0 30px;
+  }
 }
 
 @media (max-width: 992px) {
   .screen {
-    height: auto !important;
+    height: auto;
+  }
+
+  img {
+    margin: 50px 0 200px;
   }
 }
 
@@ -120,7 +129,7 @@ img {
   }
 
   img {
-    margin-top: 200px;
+    margin: 200px 0;
   }
 }
 </style>

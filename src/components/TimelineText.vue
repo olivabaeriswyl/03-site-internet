@@ -7,31 +7,27 @@ defineProps({
 </script>
 
 <template>
-  <div class="timeline-item">
-    <div class="timeline-wrapper">
-      <div class="layout-line">
-        <p class="date">{{ date }}</p>
-        <div class="big-line"></div>
+  <div class="timeline-text-item">
+    <div class="timeline-text-wrapper">
+      <div class="timeline-text-layout-line">
+        <p class="timeline-text-date">{{ date }}</p>
+        <div class="timeline-text-big-line"></div>
       </div>
 
-      <p class="location">{{ location }}</p>
+      <p class="timeline-text-location">{{ location }}</p>
 
-      <!-- <p class="age">
-        <strong>{{ age }}</strong>
-      </p> -->
-
-      <div class="layout-line-age">
-        <p class="age">
+      <div class="timeline-text-layout-line-age">
+        <p class="timeline-text-age">
           <strong>{{ age }}</strong>
         </p>
-        <div class="age-line"></div>
+        <div class="timeline-text-age-line"></div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.timeline-wrapper {
+.timeline-text-wrapper {
   width: 210px;
 }
 
@@ -50,17 +46,17 @@ strong {
   line-height: 16px;
 }
 
-.age {
+.timeline-text-age {
   width: 190px;
 }
 
 /* Mise en page ligne */
-.layout-line {
+.timeline-text-layout-line {
   display: flex;
   align-items: center;
 }
 
-.big-line {
+.timeline-text-big-line {
   flex: 1;
   height: 1px;
   min-height: 1px;
@@ -68,7 +64,7 @@ strong {
   margin-left: 8px;
 }
 
-.layout-line-age {
+.timeline-text-layout-line-age {
   margin-top: 4px;
 
   display: flex;
@@ -76,22 +72,10 @@ strong {
 }
 
 /* Animation apparition */
-/* .date,
-.location {
-  opacity: 0;
-  transform: translateY(5px);
-}
-
-.age {
-  transform: translateY(-38px);
-} */
-
-/* Animation apparition v2 */
-
 /* État initial */
 
-.age-line {
-  width: 16px;
+.timeline-text-age-line {
+  width: 26px;
   height: 1px;
   min-height: 1px;
   background-color: var(--color-orange);
@@ -102,18 +86,22 @@ strong {
   opacity: 1;
 }
 
-.date,
-.location {
+.timeline-text-age {
+  transform: scale(0.9);
+}
+
+.timeline-text-date,
+.timeline-text-location {
   opacity: 0;
   transform: translateY(5px);
 }
 
-.big-line {
+.timeline-text-big-line {
   transform-origin: left;
   opacity: 0;
 }
 
-.layout-line-age {
+.timeline-text-layout-line-age {
   transform: translateY(-38px);
   will-change: transform;
 }

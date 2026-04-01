@@ -10,8 +10,8 @@ let ctx
 
 onMounted(() => {
   ctx = gsap.context(() => {
-    const number = section.value.querySelector('#layout-number')
-    const sentence = section.value.querySelector('#layout-support-sentence')
+    const number = section.value.querySelector('#stats-statistics-layout-number')
+    const sentence = section.value.querySelector('#stats-statistics-layout-support-sentence')
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -47,19 +47,26 @@ onBeforeUnmount(() => ctx?.revert())
     <div ref="section">
       <div class="row">
         <div class="col-12">
-          <div id="layout-page">
-            <div id="layout-number">
-              <p id="big-text">185</p>
-              <p id="sentence-number-messages">Messages <em>récoltés</em></p>
+          <div id="stats-statistics-layout-page">
+            <div id="stats-statistics-layout-number">
+              <p id="stats-statistics-big-text">185</p>
+              <p id="stats-statistics-sentence-number-messages">Messages <em>récoltés</em></p>
             </div>
-            <div id="layout-support-sentence">
+            <div id="stats-statistics-layout-support-sentence">
               <p>
                 Tant de messages
                 <em
-                  >d'amour <img src="./../../img-icon-words-heart.png" id="icon-heart" alt=""
+                  >d'amour
+                  <img
+                    src="./../../img-icon-words-heart.png"
+                    id="stats-statistics-icon-heart"
+                    alt=""
                 /></em>
                 et de
-                <em>soutien <img src="./../../img-icon-words-hand.png" id="icon-hand" alt="" /></em>
+                <em
+                  >soutien
+                  <img src="./../../img-icon-words-hand.png" id="stats-statistics-icon-hand" alt=""
+                /></em>
                 partagés cette année
               </p>
             </div>
@@ -77,7 +84,7 @@ onBeforeUnmount(() => ctx?.revert())
 }
 
 /* Font */
-#big-text {
+#stats-statistics-big-text {
   font-family: arima, sans-serif;
   font-size: 250px;
   font-weight: 400;
@@ -87,14 +94,14 @@ onBeforeUnmount(() => ctx?.revert())
 }
 
 /* Mise en page */
-#layout-page {
+#stats-statistics-layout-page {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   padding-top: 10%;
 }
 
-#layout-number {
+#stats-statistics-layout-number {
   display: flex;
   align-items: baseline;
 }
@@ -111,50 +118,50 @@ img {
   opacity: 0.3;
 }
 
-#icon-heart {
+#stats-statistics-icon-heart {
   top: -38px;
   right: -20px;
 }
 
-#icon-hand {
+#stats-statistics-icon-hand {
   bottom: -38px;
   right: -20px;
 }
 
 @media (max-width: 1253px) {
-  #icon-hand {
+  #stats-statistics-icon-hand {
     right: -40px;
   }
 }
 
 @media (max-width: 1216px) {
-  #icon-heart {
+  #stats-statistics-icon-heart {
     top: -64px;
     right: -20px;
   }
 
-  #icon-hand {
+  #stats-statistics-icon-hand {
     bottom: -68px;
     right: -40px;
   }
 }
 
 @media (max-width: 1200px) {
-  #layout-page {
+  #stats-statistics-layout-page {
     flex-direction: column;
   }
 
-  #layout-support-sentence {
+  #stats-statistics-layout-support-sentence {
     margin-top: 50px;
     text-align: right;
   }
 
-  #icon-heart {
+  #stats-statistics-icon-heart {
     top: -38px;
     right: -20px;
   }
 
-  #icon-hand {
+  #stats-statistics-icon-hand {
     bottom: -38px;
     right: -20px;
   }
@@ -165,13 +172,13 @@ img {
     padding-left: 70px;
   }
 
-  #sentence-number-messages {
+  #stats-statistics-sentence-number-messages {
     width: 210px;
   }
 }
 
 @media (max-width: 576px) {
-  #big-text {
+  #stats-statistics-big-text {
     font-family: arima, sans-serif;
     font-size: 140px;
     font-weight: 400;
@@ -180,14 +187,14 @@ img {
     height: 250px;
   }
 
-  #icon-hand {
+  #stats-statistics-icon-hand {
     bottom: -38px;
     right: -20px;
   }
 }
 
 @media (max-width: 531px) {
-  #big-text {
+  #stats-statistics-big-text {
     font-family: arima, sans-serif;
     font-size: 140px;
     font-weight: 400;
@@ -196,25 +203,25 @@ img {
     height: 250px;
   }
 
-  #icon-hand {
+  #stats-statistics-icon-hand {
     bottom: -64px;
     right: -20px;
   }
 
-  #layout-support-sentence {
+  #stats-statistics-layout-support-sentence {
     padding-left: 40px;
   }
 }
 
 @media (max-width: 500px) {
-  #icon-hand {
+  #stats-statistics-icon-hand {
     bottom: -64px;
     right: 0;
   }
 }
 
 @media (max-width: 422px) {
-  #icon-hand {
+  #stats-statistics-icon-hand {
     bottom: -68px;
     right: 5px;
   }

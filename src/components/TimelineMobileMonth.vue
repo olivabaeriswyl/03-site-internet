@@ -5,8 +5,8 @@ defineProps({
 </script>
 
 <template>
-  <div class="timeline-item month-position">
-    <div id="timeline-wrapper">
+  <div>
+    <div>
       <p>{{ month }}</p>
     </div>
   </div>

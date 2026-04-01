@@ -6,7 +6,7 @@ import ButtonShare from './../components/ButtonShare.vue'
   <div class="screen">
     <div>
       <div class="row">
-        <div class="col-12 col-sm-10 col-lg-5 offset-0 offset-lg-1">
+        <div class="col-10 col-lg-5 offset-1 offset-lg-1">
           <p>
             Vous êtes <strong>victime</strong> ou avez été
             <strong>victime de violences</strong> physiques, psychiques ou sexuelles ou avez besoin
@@ -21,10 +21,10 @@ import ButtonShare from './../components/ButtonShare.vue'
             <a href="https://www.victimepasseule.ch/formulaire"><strong>ici</strong></a> !
           </p>
         </div>
-        <div class="col-12 col-lg-4 offset-0 offset-lg-1">
-          <div id="layout-responsive-emergency">
-            <div id="layout-emergency">
-              <div id="emergency">
+        <div class="col-10 col-lg-4 offset-1 offset-lg-1">
+          <div id="outro-info-layout-responsive-emergency">
+            <div id="outro-info-layout-emergency">
+              <div id="outro-info-emergency">
                 <p><strong>Numéros d'urgence</strong></p>
                 <p>
                   Police: <strong>117</strong><br />Ambulance: <strong>144</strong><br />La main
@@ -38,7 +38,7 @@ import ButtonShare from './../components/ButtonShare.vue'
         </div>
       </div>
       <div class="row">
-        <div class="col-12 col-md-7 col-lg-4 offset-md-1 offset-lg-2">
+        <div class="col-10 col-md-7 col-lg-4 offset-1 offset-md-1 offset-lg-2">
           <p>
             Sur une idée de l'association
             <a href="https://www.victimepasseule.ch/">Victime pas seule</a>, réalisation
@@ -51,8 +51,8 @@ import ButtonShare from './../components/ButtonShare.vue'
       </div>
       <div class="row">
         <div class="col-12 col-sm-8 col-md-7 col-lg-5 offset-0 offset-sm-4 offset-md-5 offset-lg-7">
-          <div id="credits">
-            <div id="layout-credits-text">
+          <div id="outro-info-credits">
+            <div id="outro-info-layout-credits-text">
               <p><strong>2026 © Victime pas seule</strong></p>
               <p>
                 Réalisation
@@ -88,40 +88,40 @@ a:hover {
 }
 
 /* Mise en page encadré numéros */
-#emergency,
-#emergency a {
+#outro-info-emergency,
+#outro-info-emergency a {
   color: var(--color-orange);
 }
 
-#emergency {
+#outro-info-emergency {
   border: solid 1.4px var(--color-orange);
   border-radius: 29px;
   padding: 30px;
 }
 
-#layout-emergency {
+#outro-info-layout-emergency {
   max-width: 320px;
 }
 
 /* Crédits */
-#credits p,
-#credits strong {
+#outro-info-credits p,
+#outro-info-credits strong {
   font-size: 15px;
   line-height: 16px;
   position: relative;
   z-index: 2;
 }
 
-#credits strong {
+#outro-info-credits strong {
   font-weight: 600;
 }
 
-#credits {
+#outro-info-credits {
   position: relative;
   padding-bottom: 20px;
 }
 
-#credits img {
+#outro-info-credits img {
   opacity: 50%;
   width: 122px;
 
@@ -131,7 +131,7 @@ a:hover {
   z-index: 1;
 }
 
-#layout-credits-text {
+#outro-info-layout-credits-text {
   margin-left: 30px;
 }
 
@@ -139,7 +139,7 @@ a:hover {
 
 /* Responsive */
 @media (min-width: 576px) and (max-width: 992px) {
-  #layout-responsive-emergency {
+  #outro-info-layout-responsive-emergency {
     display: flex;
     justify-content: flex-end;
   }
@@ -149,17 +149,19 @@ a:hover {
   .screen {
     height: auto !important;
   }
+
+  #outro-info-layout-emergency {
+    margin: 50px 0 180px;
+  }
+
+  #outro-info-credits {
+    margin-top: 100px;
+  }
 }
 
 @media (max-width: 576px) {
-  #layout-emergency {
+  #outro-info-layout-emergency {
     max-width: 100%;
-  }
-
-  #button-desktop {
-    pointer-events: none;
-    display: none;
-    opacity: 0;
   }
 }
 </style>

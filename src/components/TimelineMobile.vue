@@ -5,7 +5,7 @@ import TimelineMobileMonth from './TimelineMobileMonth.vue'
 </script>
 
 <template>
-  <div id="timeline-wrapper">
+  <div id="timeline-mobile-wrapper">
     <p id="year-text">Féminicides en 2025</p>
     <TimelineMobileMonth month="Janvier"></TimelineMobileMonth>
     <TimelineMobileLine></TimelineMobileLine>
@@ -213,7 +213,7 @@ import TimelineMobileMonth from './TimelineMobileMonth.vue'
 </template>
 
 <style scoped>
-#timeline-wrapper {
+#timeline-mobile-wrapper {
   background-color: rgba(255, 255, 255, 0.932);
   height: 100px;
   padding-top: 10px;
@@ -252,7 +252,7 @@ import TimelineMobileMonth from './TimelineMobileMonth.vue'
 }
 
 /* Largeur long texte */
-#text-width :deep(#timeline-wrapper) {
+#text-width :deep(#timeline-mobile-text-wrapper) {
   width: 270px;
 }
 </style>

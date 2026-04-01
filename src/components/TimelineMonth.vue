@@ -5,18 +5,18 @@ defineProps({
 </script>
 
 <template>
-  <div class="timeline-item">
-    <div id="timeline-wrapper">
+  <div>
+    <div id="timeline-month-wrapper">
       <div id="layout-line">
         <p>{{ month }}</p>
-        <div id="line"></div>
+        <div id="timeline-month-line"></div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-#timeline-wrapper {
+#timeline-month-wrapper {
   width: 140px;
 }
 
@@ -36,7 +36,7 @@ p {
   justify-content: end;
 }
 
-#line {
+#timeline-month-line {
   width: 26px;
   height: 1px;
   background-color: var(--color-orange);

@@ -13,13 +13,13 @@ onMounted(() => {
   const tl = gsap.timeline({ repeat: -1 })
 
   // État initial
-  gsap.set('#quote', { x: -100, opacity: 0 })
-  gsap.set('#date', { y: -30, opacity: 0 })
-  gsap.set('#name', { y: 30, opacity: 0 })
+  gsap.set('#stats-highlighted-quote', { x: -100, opacity: 0 })
+  gsap.set('#stats-highlighted-date', { y: -30, opacity: 0 })
+  gsap.set('#stats-highlighted-name', { y: 30, opacity: 0 })
 
   tl
     // Entrée
-    .to('#quote', {
+    .to('#stats-highlighted-quote', {
       x: 0,
       opacity: 1,
       duration: 0.6,
@@ -27,7 +27,7 @@ onMounted(() => {
     })
 
     .to(
-      '#date',
+      '#stats-highlighted-date',
       {
         y: 0,
         opacity: 1,
@@ -37,7 +37,7 @@ onMounted(() => {
     )
 
     .to(
-      '#name',
+      '#stats-highlighted-name',
       {
         y: 0,
         opacity: 1,
@@ -50,14 +50,14 @@ onMounted(() => {
     .to({}, { duration: 10 })
 
     // Sortie
-    .to('#quote', {
+    .to('#stats-highlighted-quote', {
       opacity: 0,
       duration: 0.4,
       ease: 'power1.in',
     })
 
     .to(
-      '#date',
+      '#stats-highlighted-date',
       {
         y: -30,
         opacity: 0,
@@ -67,7 +67,7 @@ onMounted(() => {
     )
 
     .to(
-      '#name',
+      '#stats-highlighted-name',
       {
         y: 30,
         opacity: 0,
@@ -83,9 +83,9 @@ onMounted(() => {
     })
 
     // Position avant nouveau message
-    .set('#quote', { x: -100 })
-    .set('#date', { y: -30 })
-    .set('#name', { y: 30 })
+    .set('#stats-highlighted-quote', { x: -100 })
+    .set('#stats-highlighted-date', { y: -30 })
+    .set('#stats-highlighted-name', { y: 30 })
 })
 
 // Apparition disparition
@@ -94,8 +94,8 @@ let ctx
 
 onMounted(() => {
   ctx = gsap.context(() => {
-    const sentence = section.value.querySelector('#layout-message')
-    const title = section.value.querySelector('#layout-title')
+    const sentence = section.value.querySelector('#stats-highlighted-layout-message')
+    const title = section.value.querySelector('#stats-highlighted-layout-title')
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -131,14 +131,18 @@ onBeforeUnmount(() => ctx?.revert())
     <div ref="section">
       <div class="row">
         <div class="col-12">
-          <div id="layout-title">
+          <div id="stats-highlighted-layout-title">
             <h3>Message mis en avant</h3>
           </div>
-          <div id="layout-message">
-            <div id="quote-block">
-              <p class="informations" id="date">{{ currentMessage.date }}</p>
-              <p id="quote">{{ currentMessage.message }}</p>
-              <p class="informations" id="name">{{ currentMessage.name }}</p>
+          <div id="stats-highlighted-layout-message">
+            <div id="stats-highlighted-quote-block">
+              <p class="stats-highlighted-informations" id="stats-highlighted-date">
+                {{ currentMessage.date }}
+              </p>
+              <p id="stats-highlighted-quote">{{ currentMessage.message }}</p>
+              <p class="stats-highlighted-informations" id="stats-highlighted-name">
+                {{ currentMessage.name }}
+              </p>
             </div>
           </div>
         </div>
@@ -159,7 +163,7 @@ h3 {
 }
 
 /* Style texte informations  */
-.informations {
+.stats-highlighted-informations {
   font-family: arima, sans-serif;
   font-size: 23px;
   font-weight: 300;
@@ -167,18 +171,18 @@ h3 {
 }
 
 /* Mise en page  */
-#layout-message {
+#stats-highlighted-layout-message {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#quote-block {
+#stats-highlighted-quote-block {
   max-width: 637px;
   overflow: hidden;
 }
 
-#quote {
+#stats-highlighted-quote {
   font-family: arima, sans-serif;
   font-size: 24px;
   font-weight: 600;
@@ -189,16 +193,16 @@ h3 {
 }
 
 /* Position informations  */
-#date {
+#stats-highlighted-date {
   text-align: left;
 }
 
-#name {
+#stats-highlighted-name {
   text-align: right;
 }
 
 @media (max-width: 768px) {
-  .informations {
+  .stats-highlighted-informations {
     font-family: arima, sans-serif;
     font-size: 21px;
     font-weight: 300;
@@ -206,7 +210,7 @@ h3 {
     margin-bottom: 10px;
   }
 
-  #quote {
+  #stats-highlighted-quote {
     margin: 0 0 10px;
   }
 }
