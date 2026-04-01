@@ -85,7 +85,7 @@ onBeforeUnmount(() => ctx?.revert())
         </div>
       </div>
       <div class="row">
-        <div class="col-md-7 col-lg-6 offset-md-2 offset-lg-3 offset-xl-4">
+        <div class="col-md-7 col-lg-7 offset-md-2 offset-lg-3 offset-xl-4">
           <div id="layout-sentences">
             <div id="sentence-violence">
               <p class="small-text">La</p>

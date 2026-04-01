@@ -44,6 +44,7 @@ onMounted(() => {
     })
   })
 
+  // Frise mobile
   mm.add('(max-width: 992px)', () => {
     const timeline = document.querySelector('#timeline-content-mobile')
     const section = document.querySelector('#main')
@@ -58,6 +59,40 @@ onMounted(() => {
       return section.offsetHeight - window.innerHeight
     }
 
+    // Animation apparition texte
+    const mobileItems = gsap.utils.toArray('#layout-text-mobile')
+
+    function updateMobileItems() {
+      const viewportCenterX = window.innerWidth / 2
+      const activeRange = window.innerWidth * 0.15
+
+      mobileItems.forEach((item) => {
+        const rect = item.getBoundingClientRect()
+        const itemCenterX = rect.left + rect.width / 2
+        const isActive = Math.abs(itemCenterX - viewportCenterX) < activeRange
+
+        if (item._activeMobile === isActive) return
+        item._activeMobile = isActive
+
+        if (isActive) {
+          gsap.to(item, {
+            scale: 1,
+            duration: 0.2,
+            ease: 'power2.out',
+            overwrite: 'auto',
+          })
+        } else {
+          gsap.to(item, {
+            scale: 0.9,
+            duration: 0.2,
+            ease: 'power2.in',
+            overwrite: 'auto',
+          })
+        }
+      })
+    }
+
+    // Animation frise
     if (getMoveX() <= 0) return
 
     gsap.to(timeline, {
@@ -69,6 +104,8 @@ onMounted(() => {
         end: () => `+=${getScroll()}`,
         scrub: true,
         invalidateOnRefresh: true,
+
+        onUpdate: updateMobileItems,
       },
     })
   })

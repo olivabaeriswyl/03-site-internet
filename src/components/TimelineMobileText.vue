@@ -10,7 +10,7 @@ defineProps({
   <div class="timeline-item">
     <div id="timeline-wrapper">
       <div id="big-line"></div>
-      <div id="layout-text">
+      <div id="layout-text-mobile">
         <p>{{ date }}</p>
         <p>{{ location }}</p>
         <p id="strong-text">
@@ -53,5 +53,12 @@ strong {
   min-width: 1px;
   background-color: var(--color-orange);
   margin-right: 6px;
+}
+
+/* Animation apparition texte */
+.timeline-item {
+  transform-origin: top left;
+  will-change: transform;
+  transform: scale(0.9);
 }
 </style>
