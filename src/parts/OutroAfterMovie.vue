@@ -2,8 +2,8 @@
 
 <template>
   <div class="screen">
-    <div class="row-container">
-      <div class="video-container">
+    <div class="outro-movie-line-container">
+      <div class="outro-movie-video-container">
         <h3>Retour en image</h3>
         <video src="/public/Zonta-aftermovie-web.mp4" controls></video>
       </div>
@@ -29,7 +29,7 @@ h3 {
   margin: 0;
 }
 
-.row-container {
+.outro-movie-line-container {
   width: 100%;
   height: 100%;
   display: flex;
@@ -38,7 +38,7 @@ h3 {
   position: relative;
 }
 
-.video-container {
+.outro-movie-video-container {
   display: flex;
   flex-flow: row nowrap;
   max-width: 100%;
@@ -73,7 +73,7 @@ video {
     background-color: var(--color-white);
   }
 
-  .video-container {
+  .outro-movie-video-container {
     flex-flow: column nowrap;
     align-items: flex-start;
     max-width: 100%;
