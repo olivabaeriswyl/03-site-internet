@@ -5,13 +5,17 @@
     <div class="outro-movie-line-container">
       <div class="outro-movie-video-container">
         <h3>Retour en image</h3>
-        <video src="/public/Zonta-aftermovie-web.mp4" controls></video>
+        <video src="/Zonta-aftermovie-web.mp4" controls></video>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.screen div {
+  z-index: 1;
+}
+
 .screen {
   display: flex;
   align-items: center;
