@@ -1,11 +1,11 @@
 <script setup></script>
 
 <template>
-  <div id="line"></div>
+  <div id="timeline-mobile-line"></div>
 </template>
 
 <style scoped>
-#line {
+#timeline-mobile-line {
   width: 1px;
   min-width: 1px;
   height: 26px;

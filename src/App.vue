@@ -60,7 +60,7 @@ onMounted(() => {
     }
 
     // Animation apparition texte
-    const mobileItems = gsap.utils.toArray('#layout-text-mobile')
+    const mobileItems = gsap.utils.toArray('#timeline-mobile-text-layout')
 
     function updateMobileItems() {
       const viewportCenterX = window.innerWidth / 2
@@ -111,21 +111,21 @@ onMounted(() => {
   })
 })
 
-// Animation apparition texte
+// Animation apparition texte desktop
 onMounted(() => {
-  const items = gsap.utils.toArray('.timeline-item')
+  const items = gsap.utils.toArray('.timeline-text-item')
 
   function updateItems() {
     items.forEach((item) => {
       const rect = item.getBoundingClientRect()
       const viewportCenter = window.innerHeight / 2
 
-      const date = item.querySelector('.date')
-      const location = item.querySelector('.location')
-      const age = item.querySelector('.age')
-      const line = item.querySelector('.big-line')
-      const ageLine = item.querySelector('.age-line')
-      const ageWrapper = item.querySelector('.layout-line-age')
+      const date = item.querySelector('.timeline-text-date')
+      const location = item.querySelector('.timeline-text-location')
+      const age = item.querySelector('.timeline-text-age')
+      const line = item.querySelector('.timeline-text-big-line')
+      const ageLine = item.querySelector('.timeline-text-age-line')
+      const ageWrapper = item.querySelector('.timeline-text-layout-line-age')
 
       if (!date || !location || !age || !line || !ageLine || !ageWrapper) return
 

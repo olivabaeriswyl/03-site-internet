@@ -1,11 +1,11 @@
 <script setup></script>
 
 <template>
-  <div id="line"></div>
+  <div id="timeline-line"></div>
 </template>
 
 <style scoped>
-#line {
+#timeline-line {
   width: 26px;
   height: 1px;
   min-height: 1px;

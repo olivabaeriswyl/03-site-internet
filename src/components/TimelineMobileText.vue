@@ -7,13 +7,13 @@ defineProps({
 </script>
 
 <template>
-  <div class="timeline-item">
-    <div id="timeline-wrapper">
-      <div id="big-line"></div>
-      <div id="layout-text-mobile">
+  <div class="timeline-mobile-text-item">
+    <div id="timeline-mobile-text-wrapper">
+      <div id="timeline-mobile-big-line"></div>
+      <div id="timeline-mobile-text-layout">
         <p>{{ date }}</p>
         <p>{{ location }}</p>
-        <p id="strong-text">
+        <p id="timeline-mobile-strong-text">
           <strong>{{ age }}</strong>
         </p>
       </div>
@@ -22,7 +22,7 @@ defineProps({
 </template>
 
 <style scoped>
-#timeline-wrapper {
+#timeline-mobile-text-wrapper {
   width: 200px;
   display: flex;
 }
@@ -42,12 +42,12 @@ strong {
   line-height: 16px;
 }
 
-#strong-text {
+#timeline-mobile-strong-text {
   margin-top: 4px;
 }
 
 /* Mise en page ligne */
-#big-line {
+#timeline-mobile-big-line {
   height: 75px;
   width: 1px;
   min-width: 1px;
@@ -56,9 +56,8 @@ strong {
 }
 
 /* Animation apparition texte */
-.timeline-item {
+.timeline-mobile-text-item {
   transform-origin: top left;
   will-change: transform;
-  transform: scale(0.9);
 }
 </style>
