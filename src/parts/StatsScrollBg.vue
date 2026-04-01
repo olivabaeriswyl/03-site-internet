@@ -9,7 +9,7 @@ const heroContainer = ref(null)
 let ctx // ← manquant
 
 onMounted(() => {
-  const isMobile = window.innerWidth < 600
+  const isMobile = window.innerWidth < 576
 
   const values = isMobile
     ? {
