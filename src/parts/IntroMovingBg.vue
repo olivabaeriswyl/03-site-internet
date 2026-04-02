@@ -4,11 +4,69 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
+// const introContainer = ref(null)
+// const bgContainerRef = ref(null)
+// const bgImgLast = ref(null)
+// const bgImgLastOrange = ref(null)
+
+// let ctx = ref(null)
+// let imageWidth
+
+// const props = defineProps({
+//   state: Number,
+// })
+
+// const animate = (newState, transition) => {
+//   gsap.to(bgContainerRef.value, {
+//     x:
+//       newState === 1
+//         ? 0
+//         : newState === 2
+//           ? -imageWidth
+//           : newState === 3
+//             ? -imageWidth * 2
+//             : -imageWidth * 2,
+//     duration: transition ? 0.5 : 0,
+//   })
+// }
+
+// onMounted(() => {
+//   bgImgLast.value.onload = () => {
+//     const rect = bgImgLast.value.getBoundingClientRect()
+//     imageWidth = rect.width
+//     console.log('imageWidth', imageWidth)
+//     animate(props.state, false)
+//   }
+//   // Si déjà cachée
+//   if (bgImgLast.value.complete) {
+//     bgImgLast.value.onload()
+//   }
+// })
+
+// watch(
+//   () => props.state,
+//   (newState) => {
+//     animate(newState, true)
+//     if (newState === 4) {
+//       gsap.to(bgImgLast.value, {
+//         scale: 1.2,
+//         duration: 0.5,
+//       })
+//       gsap.to(bgImgLastOrange.value, {
+//         scale: 1.2,
+//         duration: 0.5,
+//       })
+//     }
+//   },
+// )
+
+// onUnmounted(() => ctx.value?.revert())
+
 const introContainer = ref(null)
 const bgContainerRef = ref(null)
-let ctx = ref(null)
 const bgImgLast = ref(null)
 const bgImgLastOrange = ref(null)
+let ctx = null // ← plus un ref, juste null
 let imageWidth
 
 const props = defineProps({
@@ -31,12 +89,10 @@ const animate = (newState, transition) => {
 
 onMounted(() => {
   bgImgLast.value.onload = () => {
-    const rect = bgImgLast.value.getBoundingClientRect()
-    imageWidth = rect.width
-    console.log('imageWidth', imageWidth)
+    imageWidth = bgImgLast.value.getBoundingClientRect().width
     animate(props.state, false)
   }
-  // Si déjà cachée
+
   if (bgImgLast.value.complete) {
     bgImgLast.value.onload()
   }
@@ -46,6 +102,7 @@ watch(
   () => props.state,
   (newState) => {
     animate(newState, true)
+
     if (newState === 4) {
       gsap.to(bgImgLast.value, {
         scale: 1.2,
@@ -59,7 +116,7 @@ watch(
   },
 )
 
-onUnmounted(() => ctx.value.revert())
+onUnmounted(() => ctx?.revert())
 </script>
 
 <template>

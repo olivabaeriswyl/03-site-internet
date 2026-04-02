@@ -14,8 +14,8 @@ gsap.registerPlugin(ScrollTrigger)
 const gsapContainers = ref([])
 
 // timing values
-const skipWordsDelay = 2000
-const skipTextDelay = 2000
+const skipWordsDelay = 3000
+const skipTextDelay = 15000
 const tutorialDelay = 2000
 
 const isMobile = window.innerWidth <= 576
@@ -105,6 +105,14 @@ onMounted(() => {
         end: 'top 30%',
       },
     })
+  })
+
+  ScrollTrigger.create({
+    trigger: introDiv.value,
+    start: 'top bottom',
+    onEnterBack: () => {
+      state.value = 1
+    },
   })
 })
 </script>

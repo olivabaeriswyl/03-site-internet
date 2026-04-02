@@ -104,6 +104,10 @@ p {
 }
 
 /* Placement précis des mots */
+#word-courage {
+  margin-top: 70px;
+}
+
 #word-espoir {
   margin-top: -50px;
 }

@@ -11,14 +11,17 @@ import ButtonShare from './../components/ButtonShare.vue'
             Vous êtes <strong>victime</strong> ou avez été
             <strong>victime de violences</strong> physiques, psychiques ou sexuelles ou avez besoin
             d’aide ?
-            <a href="https://www.victimepasseule.ch/post/aide-aux-victimes">
+            <a href="https://www.victimepasseule.ch/post/aide-aux-victimes" target="_blank">
               <strong>Voici la liste des contacts utiles.</strong>
             </a>
           </p>
           <p>
             <strong>Vous souhaitez témoigner anonymement ?</strong> Vous pouvez transmettre votre
             témoignage
-            <a href="https://www.victimepasseule.ch/formulaire"><strong>ici</strong></a> !
+            <a href="https://www.victimepasseule.ch/formulaire" target="_blank"
+              ><strong>ici</strong></a
+            >
+            !
           </p>
         </div>
         <div class="col-10 col-lg-4 offset-1 offset-lg-1">
@@ -29,8 +32,8 @@ import ButtonShare from './../components/ButtonShare.vue'
                 <p>
                   Police: <strong>117</strong><br />Ambulance: <strong>144</strong><br />La main
                   tendue: <strong>143</strong><br />
-                  <a href="https://www.ciao.ch/"><strong>Ciao.ch</strong> </a><br />Pro Juventute
-                  (pour les 11-20 ans): <strong>147</strong>
+                  <a href="https://www.ciao.ch/" target="_blank"><strong>Ciao.ch</strong> </a
+                  ><br />Pro Juventute (pour les 11-20 ans): <strong>147</strong>
                 </p>
               </div>
             </div>
@@ -41,10 +44,14 @@ import ButtonShare from './../components/ButtonShare.vue'
         <div class="col-10 col-md-7 col-lg-4 offset-1 offset-md-1 offset-lg-2">
           <p>
             Sur une idée de l'association
-            <a href="https://www.victimepasseule.ch/">Victime pas seule</a>, réalisation
-            <a href="https://www.zonta.ch/fr/">Zonta Club Fribourg</a> et
-            <a href="https://www.eikon.ch/departments/eikonlab/">eikonlab</a>, en partenariat avec
-            <a href="https://swiss-soroptimist.ch/fr/">Soroptimist International Club Fribourg</a>
+            <a href="https://www.victimepasseule.ch/" target="_blank">Victime pas seule</a>,
+            réalisation
+            <a href="https://www.zonta.ch/fr/" target="_blank">Zonta Club Fribourg</a> et
+            <a href="https://www.eikon.ch/departments/eikonlab/" target="_blank">eikonlab</a>, en
+            partenariat avec
+            <a href="https://swiss-soroptimist.ch/fr/" target="_blank"
+              >Soroptimist International Club Fribourg</a
+            >
           </p>
           <ButtonShare></ButtonShare>
         </div>
@@ -56,13 +63,41 @@ import ButtonShare from './../components/ButtonShare.vue'
               <p><strong>2026 © Victime pas seule</strong></p>
               <p>
                 Réalisation
-                <a href="https://www.eikon.ch/departments/eikonlab/"><strong>eikonlab</strong></a>
+                <a href="https://www.eikon.ch/departments/eikonlab/" target="_blank"
+                  ><strong>eikonlab</strong></a
+                >
                 <br />
                 Conception du site - Oliva Baeriswyl et Flavio Rotunno<br />After movie - Laurianne
                 Sauteur et Elise Mutrux
               </p>
             </div>
             <img src="./../../img-credits.png" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div
+          class="col-12 col-sm-12 col-md-7 col-lg-5 offset-0 offset-sm-0 offset-md-5 offset-lg-7"
+        >
+          <div id="outro-info-logos">
+            <a href="https://www.zonta.ch/fr/" target="_blank">
+              <img src="./../../public/logo-zonta-fribourg.png" alt="Zonta Fribourg - logo" />
+            </a>
+            <a href="https://swiss-soroptimist.ch/fr/" target="_blank">
+              <img
+                src="./../../public/logo-soroptimist-fribourg.png"
+                alt="Soroptimist Fribourg - logo"
+              />
+            </a>
+            <a href="https://www.eikon.ch/" target="_blank">
+              <img id="outro-info-eikon" src="./../../public/logo-eikon.png" alt="eikon - logo" />
+            </a>
+            <a href="https://www.fr.ch/" target="_blank">
+              <img
+                src="./../../public/logo-etat-fribourg-staat-freiburg.png"
+                alt="Etat de Fribourg - logo"
+              />
+            </a>
           </div>
         </div>
       </div>
@@ -118,6 +153,7 @@ a:hover {
 
 #outro-info-credits {
   position: relative;
+  margin-top: -30px;
   padding-bottom: 20px;
 }
 
@@ -133,6 +169,23 @@ a:hover {
 
 #outro-info-layout-credits-text {
   margin-left: 30px;
+}
+
+#outro-info-logos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0 20px;
+}
+
+#outro-info-logos img {
+  width: 80px;
+  height: 100%;
+}
+
+#outro-info-logos #outro-info-eikon {
+  width: 95px;
+  height: 100%;
 }
 
 /* Bouton */
