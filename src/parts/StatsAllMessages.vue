@@ -94,7 +94,7 @@ function setFilter(category) {
   <div class="screen">
     <div id="stats-messages-layout-content-text">
       <div id="layout-title">
-        <h2>Messages du sapin porte-paroles</h2>
+        <h2>Messages du sapin porte-parole</h2>
       </div>
       <div id="filters-layout">
         <div id="filters">

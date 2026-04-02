@@ -60,11 +60,10 @@ onBeforeUnmount(() => ctx?.revert())
             <p id="intro-text-sentence-top">
               Le sapin porte-parole est une initiative de sensibilisation et de solidarité portée
               par l'association <em>Victime pas seule</em>, visant à soutenir les victimes de
-              violences durant les <em>« Orange Day »</em>.
+              violences durant les <em>« Orange Days »</em>.
             </p>
             <p id="intro-text-sentence-bottom">
-              Des sapins ont étés installés dans plusieurs endroits en Suisse romande, notamment à
-              la
+              Des sapins ont été installés dans plusieurs endroits en Suisse romande, notamment à la
               <em>gare de Fribourg</em>, pour recueillir des messages d'espoir et briser le silence.
             </p>
           </div>

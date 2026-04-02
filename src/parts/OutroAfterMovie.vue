@@ -4,7 +4,7 @@
   <div class="screen">
     <div class="outro-movie-line-container">
       <div class="outro-movie-video-container">
-        <h3>Retour en image</h3>
+        <h3>Retour en images</h3>
         <video src="/zonta-aftermovie-web.mp4" controls></video>
       </div>
     </div>
